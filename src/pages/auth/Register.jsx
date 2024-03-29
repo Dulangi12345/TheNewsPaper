@@ -61,8 +61,10 @@ const Register = () => {
     setInvoice(e.target.value);
   };
 
-  const addPayment = async () => {
+  const addPayment = async (e) => {
+    e.preventDefault();
     try {
+
       const response = await fetch(
         " https://secure.myfees.lk/api/sch/payments",
         {
@@ -88,7 +90,7 @@ const Register = () => {
         setSuccessMessage("Payment added successfully");      
       } else{
         setError(data.message);
-        
+
       }
       await handleRegister(name, email, password);
     } catch (error) {
