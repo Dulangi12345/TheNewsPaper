@@ -14,7 +14,10 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 import photo from "../../assets/Login3.png";
-import { resolveBaseUrl } from "vite";
+import axios from "axios";
+
+
+const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -65,33 +68,19 @@ const Register = () => {
     e.preventDefault();
     try {
 
-      const response = await fetch(
-        "https://secure.myfees.lk/api/sch/payments",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            studentName: name,
-            description: description,
-            amount: amount,
-            indexNumber: indexNumber,
-            email: email,
-            phoneNo: phoneNo,
-            classOrCourse: classOrCourse,
-            invoice: invoice,
-          }),
-        }
-      );
-
-      const data = await response.json(); 
-      if (response.ok){
-        setSuccessMessage("Payment added successfully");      
-      } else{
-        setError(data.message);
-
-      }
+    axios.post(baseUrl, { 
+      studentName: name,
+      description: description,
+      amount: amount,
+      indexNumber: indexNumber,
+      email: email,
+      phoneNo: phoneNo,
+      classOrCourse: classOrCourse,
+      invoice: invoice
+    }).then((response) => {
+      console.log(response);
+    });
+    
       await handleRegister(name, email, password);
     } catch (error) {
       console.log(error);
