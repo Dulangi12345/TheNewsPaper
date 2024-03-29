@@ -66,7 +66,7 @@ const Register = () => {
     try {
 
       const response = await fetch(
-        " https://secure.myfees.lk/api/sch/payments",
+        "https://secure.myfees.lk/api/sch/payments",
         {
           method: "POST",
           headers: {
