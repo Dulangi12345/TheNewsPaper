@@ -14,6 +14,7 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 import photo from "../../assets/Login3.png";
+import { resolveBaseUrl } from "vite";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -82,8 +83,13 @@ const Register = () => {
         }
       );
 
-      const status = response.status;
-      console.log(status);
+      const data = await response.json(); 
+      if (response.ok){
+        setSuccessMessage("Payment added successfully");      
+      } else{
+        setError(data.message);
+        
+      }
       await handleRegister(name, email, password);
     } catch (error) {
       console.log(error);
