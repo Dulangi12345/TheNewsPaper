@@ -65,7 +65,7 @@ const Register = () => {
   };
 
   const addPayment = async (e) => {
-    e.preventDefault();
+    
     try {
 
     axios.post(baseUrl, { 
