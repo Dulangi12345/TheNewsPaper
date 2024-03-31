@@ -65,8 +65,11 @@ const Register = () => {
   };
 
   const addPayment = async (e) => {
-    
+    if (e) {
+      e.preventDefault();
+    }
     try {
+      const reponse = await
 
     axios.post(baseUrl, { 
       studentName: name,
@@ -77,9 +80,8 @@ const Register = () => {
       phoneNo: phoneNo,
       classOrCourse: classOrCourse,
       invoice: invoice
-    }).then((response) => {
-      console.log(response);
-    });
+    })
+    console.log(reponse);
     
       await handleRegister(name, email, password);
     } catch (error) {
