@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore/lite";
 import photo from "../../assets/Login3.png";
 import axios from "axios";
+import setupProxy from "../../setupProxy";
 
 // const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
