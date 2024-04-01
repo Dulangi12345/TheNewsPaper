@@ -57,13 +57,10 @@ export default defineConfig({
   base: "./",
   server: {
     proxy: {
-      '/api': {
-        target: 'https://secure.myfees.lk/api/sch/payments',
-        changeOrigin: true,
-      }
-    }
-  },
+      '/api': 'https://secure.myfees.lk/api/sch/payments'
 
+    } 
+  },
   plugins: [
     react(),
     VitePWA ({
