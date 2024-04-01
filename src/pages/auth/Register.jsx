@@ -67,7 +67,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post( baseUrl, {
+      const response = await axios.post('/api', {
         apiKey: "KCBAE725KPTCGANOKA902101207",
         studentName: name,
         description: description,
