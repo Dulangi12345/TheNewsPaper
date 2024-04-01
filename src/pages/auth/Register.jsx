@@ -78,14 +78,8 @@ const Register = () => {
         classOrCourse: classOrCourse,
         invoice: invoice,
       });
-      
-      
-      if (response.status === 201) {
-        await handleRegister(name, email, password);
-      } else{
-        console.log("Error");
-      }
-
+      setResponseData(response.data);
+      console.log(response.data);
       // await handleRegister(name, email, password);
     } catch (error) {
       console.log(error);
