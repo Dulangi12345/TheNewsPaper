@@ -67,7 +67,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post('/api', {
+      const response = await axios.post('/api/sch/payments', {
         apiKey: "KCBAE725KPTCGANOKA902101207",
         studentName: name,
         description: description,
@@ -78,13 +78,12 @@ const Register = () => {
         classOrCourse: classOrCourse,
         invoice: invoice,
       });
+      setResponseData(response.data);
+      console.log(response.data);
+
       
       
-      if (response.status === 201) {
-        await handleRegister(name, email, password);
-      } else{
-        console.log("Error");
-      }
+     
 
       // await handleRegister(name, email, password);
     } catch (error) {

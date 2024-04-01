@@ -58,7 +58,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://secure.myfees.lk/api/sch/payments',
+        target: 'https://secure.myfees.lk',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
