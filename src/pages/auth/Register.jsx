@@ -83,7 +83,8 @@ const Register = () => {
     })
     console.log(reponse);
     
-      await handleRegister(name, email, password);
+    
+      // await handleRegister(name, email, password);
     } catch (error) {
       console.log(error);
     }
