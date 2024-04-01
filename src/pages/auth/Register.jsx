@@ -76,12 +76,12 @@ const Register = () => {
         classOrCourse: classOrCourse,
         invoice: invoice,
       });
-      if( response.data && response.data.id){
-        setResponseData(response.data);
-      }else {
-        setResponseData(response.data);
+      
+      if (response.status === 201) {
+        await handleRegister(name, email, password);
+      } else{
+        console.log("Error");
       }
-      console.log(response);
 
       // await handleRegister(name, email, password);
     } catch (error) {
