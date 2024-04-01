@@ -17,7 +17,7 @@ import photo from "../../assets/Login3.png";
 import axios from "axios";
 import { set } from "mongoose";
 
-// const baseUrl = "https://secure.myfees.lk/api/sch/payments";
+ const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -67,7 +67,8 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post('/api/payment', {
+      const response = await axios.post( baseUrl, {
+        apiKey: "KCBAE725KPTCGANOKA902101207",
         studentName: name,
         description: description,
         amount: amount,
@@ -77,7 +78,7 @@ const Register = () => {
         classOrCourse: classOrCourse,
         invoice: invoice,
       });
-      setResponseData(response.data);
+      
       
       if (response.status === 201) {
         await handleRegister(name, email, password);
@@ -344,7 +345,7 @@ const Register = () => {
                   onChange={handleInvoice}
                 />
               </div>
-              <input type="hidden" id="apiKey" value="" />
+              <input type="hidden" id="apiKey" value="KCBAE725KPTCGANOKA902101207" />
 
               {/* <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>

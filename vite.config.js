@@ -55,16 +55,6 @@ const manifestForPlugin = {
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
-  server :{
-    proxy : {
-      "/api" : {
-        target: 'https://secure.myfees.lk/api/sch/payments',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-
-  },
   plugins: [
     react(),
     VitePWA ({
