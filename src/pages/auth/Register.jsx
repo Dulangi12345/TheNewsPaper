@@ -16,7 +16,7 @@ import {
 import photo from "../../assets/Login3.png";
 import axios from "axios";
 
-const baseUrl = "https://secure.myfees.lk/api/sch/payments";
+// const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -66,7 +66,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post(baseUrl, {
+      const response = await axios.post('/api', {
         studentName: name,
         description: description,
         amount: amount,
@@ -77,8 +77,7 @@ const Register = () => {
         invoice: invoice,
       });
       if( response.data && response.data.id){
-        window.location.href = `https://secure.myfees.lk/pay/${response.data.id}`;
-
+        setResponseData(response.data);
       }else {
         setResponseData(response.data);
       }
