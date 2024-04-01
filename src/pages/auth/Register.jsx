@@ -16,7 +16,6 @@ import {
 import photo from "../../assets/Login3.png";
 import axios from "axios";
 
-
 const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
@@ -35,6 +34,7 @@ const Register = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [classOrCourse, setClassOrCourse] = useState("");
   const [invoice, setInvoice] = useState("");
+  const [responseData , setResponseData] = useState(null);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -65,23 +65,25 @@ const Register = () => {
   };
 
   const addPayment = async () => {
-    
     try {
-      const reponse = await
+      const response = await axios.post(baseUrl, {
+        studentName: name,
+        description: description,
+        amount: amount,
+        indexNumber: indexNumber,
+        email: email,
+        phoneNo: phoneNo,
+        classOrCourse: classOrCourse,
+        invoice: invoice,
+      });
+      if( response.data && response.data.id){
+        window.location.href = `https://secure.myfees.lk/pay/${response.data.id}`;
 
-    axios.post(baseUrl, { 
-      studentName: name,
-      description: description,
-      amount: amount,
-      indexNumber: indexNumber,
-      email: email,
-      phoneNo: phoneNo,
-      classOrCourse: classOrCourse,
-      invoice: invoice
-    })
-    console.log(reponse);
+      }else {
+        setResponseData(response.data);
+      }
+      console.log(response);
 
-    
       // await handleRegister(name, email, password);
     } catch (error) {
       console.log(error);
@@ -180,12 +182,15 @@ const Register = () => {
               Create an account
             </h1>
 
-            <form className="mt-6 h-96"
-             style={{
-              overflow : "scroll"
-             }}
-             id="payment-form"
-             onSubmit={handleSubmit} method="post">
+            <form
+              className="mt-6 h-96"
+              style={{
+                overflow: "scroll",
+              }}
+              id="payment-form"
+              onSubmit={handleSubmit}
+              method="post"
+            >
               {error && <p className="text-red-500">{error}</p>}
               {successMessage && (
                 <p className="text-green-500">{successMessage}</p>
@@ -265,7 +270,9 @@ const Register = () => {
                 />
               </div>
               <div class="mt-4">
-                <label for="amount" className="block text-gray-700">Payment Amount</label>
+                <label for="amount" className="block text-gray-700">
+                  Payment Amount
+                </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
@@ -278,7 +285,9 @@ const Register = () => {
                 />
               </div>
               <div class="mt-4">
-                <label for="indexNumber" className="block text-gray-700">Index number</label>
+                <label for="indexNumber" className="block text-gray-700">
+                  Index number
+                </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
@@ -292,7 +301,9 @@ const Register = () => {
               </div>
 
               <div class="mt-4">
-                <label for="phoneNo" className="block text-gray-700">Mobile Number</label>
+                <label for="phoneNo" className="block text-gray-700">
+                  Mobile Number
+                </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
@@ -304,7 +315,9 @@ const Register = () => {
                 />
               </div>
               <div class="mt-4">
-                <label for="classOrCourse" className="block text-gray-700">Payment Category</label>
+                <label for="classOrCourse" className="block text-gray-700">
+                  Payment Category
+                </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
@@ -317,7 +330,9 @@ const Register = () => {
                 />
               </div>
               <div class="mt-4">
-                <label for="invoice" className="block text-gray-700">Invoice Number</label>
+                <label for="invoice" className="block text-gray-700">
+                  Invoice Number
+                </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
@@ -328,16 +343,14 @@ const Register = () => {
                   onChange={handleInvoice}
                 />
               </div>
-              <input type="hidden" id="apiKey" value=""    />
+              <input type="hidden" id="apiKey" value="" />
 
               {/* <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
                             </div> */}
 
               <button
-              onClick={
-                handleSubmit
-              }
+                onClick={handleSubmit}
                 type="submit"
                 className="w-full block bg-black hover:bg-[#20615B] text-white font-semibold rounded-lg px-4 py-3 mt-6"
                 disabled={loginLoading}
