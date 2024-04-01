@@ -15,7 +15,7 @@ import {
 } from "firebase/firestore/lite";
 import photo from "../../assets/Login3.png";
 import axios from "axios";
-import setupProxy from "../../setupProxy";
+import { set } from "mongoose";
 
 // const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
@@ -67,7 +67,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post('/api', {
+      const response = await axios.post('/api/payment', {
         studentName: name,
         description: description,
         amount: amount,
@@ -77,6 +77,7 @@ const Register = () => {
         classOrCourse: classOrCourse,
         invoice: invoice,
       });
+      setResponseData(response.data);
       
       if (response.status === 201) {
         await handleRegister(name, email, password);
