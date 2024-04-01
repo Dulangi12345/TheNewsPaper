@@ -17,7 +17,7 @@ import photo from "../../assets/Login3.png";
 import axios from "axios";
 import { set } from "mongoose";
 
-//  const baseUrl = "https://secure.myfees.lk/api/sch/payments";
+ const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -67,34 +67,22 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await fetch(
-        '/api',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            apiKey: "KCBAE725KPTCGANOKA902101207",
-            studentName: name,
-            description: description,
-            amount: amount,
-            indexNumber: indexNumber,
-            email: email,
-            phoneNo: phoneNo,
-            classOrCourse: classOrCourse,
-            invoice: invoice
-          })
-        }
-      );
-      
-         
+      const response = await axios.post('/api' , 
     
-      
-
-      
-      
-     
+        {
+        apiKey: "KCBAE725KPTCGANOKA902101207",
+        studentName: name,
+        description: description,
+        amount: amount,
+        indexNumber: indexNumber,
+        email: email,
+        phoneNo: phoneNo,
+        classOrCourse: classOrCourse,
+        invoice: invoice,
+      });
+      setResponseData(response.data);
+      console.log(response.data);
+   
 
       await handleRegister(name, email, password);
     } catch (error) {
