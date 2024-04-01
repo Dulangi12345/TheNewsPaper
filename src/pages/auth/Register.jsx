@@ -64,10 +64,8 @@ const Register = () => {
     setInvoice(e.target.value);
   };
 
-  const addPayment = async (e) => {
-    if (e) {
-      e.preventDefault();
-    }
+  const addPayment = async () => {
+    
     try {
       const reponse = await
 
@@ -82,7 +80,7 @@ const Register = () => {
       invoice: invoice
     })
     console.log(reponse);
-    
+
     
       // await handleRegister(name, email, password);
     } catch (error) {
