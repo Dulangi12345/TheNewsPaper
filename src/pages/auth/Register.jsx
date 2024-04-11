@@ -17,7 +17,7 @@ import photo from "../../assets/Login3.png";
 import axios from "axios";
 import { set } from "mongoose";
 
- const baseUrl = "https://secure.myfees.lk/api/sch/payments";
+const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -35,7 +35,7 @@ const Register = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [classOrCourse, setClassOrCourse] = useState("");
   const [invoice, setInvoice] = useState("");
-  const [responseData , setResponseData] = useState(null);
+  const [responseData, setResponseData] = useState(null);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -67,26 +67,23 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post('/api/sch/payments' , 
-    
+      const response = await axios.post(
+        "/api/sch/payments",
+
         {
-        apiKey: "KCBAE725KPTCGANOKA902101207",
-        studentName: name,
-        description: description,
-        amount: amount,
-        indexNumber: indexNumber,
-        email: email,
-        phoneNo: phoneNo,
-        classOrCourse: classOrCourse,
-        invoice: invoice,
-      });
+          apiKey: "KCBAE725KPTCGANOKA902101207",
+          studentName: name,
+          description: description,
+          amount: amount,
+          indexNumber: indexNumber,
+          email: email,
+          phoneNo: phoneNo,
+          classOrCourse: classOrCourse,
+          invoice: invoice,
+        }
+      );
       setResponseData(response.data);
       console.log(response.data);
-      
-   
-
-
-
     } catch (error) {
       console.log(error);
     }
@@ -345,7 +342,11 @@ const Register = () => {
                   onChange={handleInvoice}
                 />
               </div>
-              <input type="hidden" id="apiKey" value="KCBAE725KPTCGANOKA902101207" />
+              <input
+                type="hidden"
+                id="apiKey"
+                value="KCBAE725KPTCGANOKA902101207"
+              />
 
               {/* <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>

@@ -67,7 +67,7 @@ export default defineConfig({
   server :{
     port : 3000,
     proxy:{
-      "/api":{
+      "/api/sch/payments":{
         target: 'https://secure.myfees.lk',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api')
