@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 
-
 const manifestForPlugin = {
   name: "The-Catalyst",
   short_name: "The-Catalyst",
@@ -62,10 +61,10 @@ export default defineConfig({
       manifest : manifestForPlugin,
       
 
-    })
+    }),
   ],
   server :{
-    port : 3000,
+  
     proxy:{
       "/api/sch/payments":{
         target: 'https://secure.myfees.lk',
