@@ -70,13 +70,15 @@ const Register = () => {
       const response = await axios.post(
         "https://secure.myfees.lk/api/sch/payments",
 
-        
-          
+        {
           headers: {
             "Content-Type": "application/json",
             'Access-Control-Allow-Origin': 'https://www.thecatalyst.lk',
             
           },
+        },
+          
+         
           {
             apiKey: "KCBAE725KPTCGANOKA902101207",
             studentName: name,
