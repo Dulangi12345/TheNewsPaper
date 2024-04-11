@@ -67,7 +67,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post('https://secure.myfees.lk/api/sch/payments' , 
+      const response = await axios.post('/api/sch/payments' , 
     
         {
         apiKey: "KCBAE725KPTCGANOKA902101207",
