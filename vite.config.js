@@ -70,7 +70,11 @@ export default defineConfig({
       "/api/sch/payments":{
         target: 'https://secure.myfees.lk',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
+        rewrite: (path) => path.replace(/^\/api\/sch\/payments/, ''),
+        headers :{
+          'Content-Type': 'application/json'
+
+        }
 
       }
     }
