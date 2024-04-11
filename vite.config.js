@@ -72,7 +72,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api\/sch\/payments/, ''),
         headers :{
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': 'https://www.thecatalyst.lk',
 
         }
 
