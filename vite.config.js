@@ -1,8 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import { createProxyMiddleware } from 'http-proxy-middleware'
-import { create } from '@mui/material/styles/createTransitions'
 
 
 const manifestForPlugin = {
@@ -64,31 +62,21 @@ export default defineConfig({
       
 
     }),
-    createProxyMiddleware({
-      target: 'https://secure.myfees.lk',
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/api\/sch\/payments/, ''),
-      headers :{
-        'Content-Type': 'application/json'
+  ],
+  server :{
+  
+    proxy:{
+      "/api/sch/payments":{
+        target: 'https://secure.myfees.lk',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/sch\/payments/, ''),
+        headers :{
+          'Content-Type': 'application/json'
+
+        }
 
       }
-    })
-  ],
-  
-  // server :{
-  //   port : 3000,
-  //   proxy:{
-  //     "/api/sch/payments":{
-  //       target: 'https://secure.myfees.lk',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api\/sch\/payments/, ''),
-  //       headers :{
-  //         'Content-Type': 'application/json'
+    }
 
-  //       }
-
-  //     }
-  //   }
-
-  // }
+  }
 })
