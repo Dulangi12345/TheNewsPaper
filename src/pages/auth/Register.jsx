@@ -73,7 +73,6 @@ const Register = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': 'https://www.thecatalyst.lk',
             
           },
         },
