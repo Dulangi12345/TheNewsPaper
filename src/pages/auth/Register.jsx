@@ -68,34 +68,26 @@ const Register = () => {
   const addPayment = async () => {
     try {
       const response = await axios.post(
-        "https://secure.myfees.lk/api/sch/payments",
+        "/api/sch/payments",
 
+        {
+          apiKey: "KCBAE725KPTCGANOKA902101207",
+          studentName: name,
+          description: description,
+          amount: amount,
+          indexNumber: indexNumber,
+          email: email,
+          phoneNo: phoneNo,
+          classOrCourse: classOrCourse,
+          invoice: invoice,
+        },
         {
           headers: {
             "Content-Type": "application/json",
-            
           },
-        },
-          
-         
-          {
-            apiKey: "KCBAE725KPTCGANOKA902101207",
-            studentName: name,
-            description: description,
-            amount: amount,
-            indexNumber: indexNumber,
-            email: email,
-            phoneNo: phoneNo,
-            classOrCourse: classOrCourse,
-            invoice: invoice,
-          },
-        
+        }
       );
-      if (response.ok) {
-        const data = await response.json();
-        setResponseData(data);
-        console.log(data);
-      }
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
