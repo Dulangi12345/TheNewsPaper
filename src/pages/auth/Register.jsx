@@ -72,7 +72,7 @@ const Register = () => {
         mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
-          "access-control-allow-origin": "*",
+          "access-control-allow-origin": "https://www.thecatalyst.lk",
         },
         body: JSON.stringify({
           apiKey: "KCBAE725KPTCGANOKA902101207",
