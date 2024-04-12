@@ -68,9 +68,9 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      axios
+      const response  = axios
         .post(
-          "https://secure.myfees.lk/api/sch/payments",
+          "/addPayment",
           {
             apiKey: "KCBAE725KPTCGANOKA902101207",
             studentName: name,
@@ -90,12 +90,12 @@ const Register = () => {
         );
 
         console.log(response.data);
-        setResponseData(response.data);
+       
        
 
      
     } catch (error) {
-      console.log(error);
+      console.error("Error:", error.response ? error.response.data : error.message);
     }
   };
 
