@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const axios = require('axios');
 
@@ -22,7 +20,7 @@ app.post('/register', async (req, res) => {
     console.log('Response from external API:', response.data);
 
     // Optionally, send a response back to the client
-    res.status(200).json({ success: true, message: 'Form submitted successfully' });
+    res.status(200).json({ success: true, message: 'Form submitted successfully', responseData: response.data });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });

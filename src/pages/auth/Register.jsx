@@ -16,6 +16,7 @@ import {
 import photo from "../../assets/Login3.png";
 import axios from "axios";
 import { set } from "mongoose";
+import { response } from "express";
 
 const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
@@ -69,7 +70,7 @@ const Register = () => {
     try {
       axios
         .post(
-          "https://thecatalyst.lk/register",
+          "https://secure.myfees.lk/api/sch/payments",
           {
             apiKey: "KCBAE725KPTCGANOKA902101207",
             studentName: name,
@@ -86,37 +87,13 @@ const Register = () => {
               "Content-Type": "application/json",
             },
           }
-        )
-        .then((response) => {
-          console.log(response.data);
-          setResponseData(response.data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        );
 
-      // const response = await axios.post(
-      //   "/api",
+        console.log(response.data);
+        setResponseData(response.data);
+       
 
-      //   {
-      //     apiKey: "KCBAE725KPTCGANOKA902101207",
-      //     studentName: name,
-      //     description: description,
-      //     amount: amount,
-      //     indexNumber: indexNumber,
-      //     email: email,
-      //     phoneNo: phoneNo,
-      //     classOrCourse: classOrCourse,
-      //     invoice: invoice,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "method": "POST",
-      //     },
-      //   }
-      // );
-      // console.log(response.data);
+     
     } catch (error) {
       console.log(error);
     }
