@@ -67,28 +67,53 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post(
-        "https://secure.myfees.lk/api/sch/payments",
-
-        {
-          apiKey: "KCBAE725KPTCGANOKA902101207",
-          studentName: name,
-          description: description,
-          amount: amount,
-          indexNumber: indexNumber,
-          email: email,
-          phoneNo: phoneNo,
-          classOrCourse: classOrCourse,
-          invoice: invoice,
+      fetch(baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "access-control-allow-origin": "*",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "method": "POST",
-          },
-        }
-      );
-      console.log(response.data);
+        body: JSON.stringify({
+          apiKey: "KCBAE725KPTCGANOKA902101207",
+              studentName: name,
+              description: description,
+              amount: amount,
+              indexNumber: indexNumber,
+              email: email,
+              phoneNo: phoneNo,
+              classOrCourse: classOrCourse,
+              invoice: invoice,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setResponseData(data);
+        });
+
+
+      // const response = await axios.post(
+      //   "/api",
+
+      //   {
+      //     apiKey: "KCBAE725KPTCGANOKA902101207",
+      //     studentName: name,
+      //     description: description,
+      //     amount: amount,
+      //     indexNumber: indexNumber,
+      //     email: email,
+      //     phoneNo: phoneNo,
+      //     classOrCourse: classOrCourse,
+      //     invoice: invoice,
+      //   },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "method": "POST",
+      //     },
+      //   }
+      // );
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }

@@ -1,29 +1,16 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
-const app = express();
-const bodyParser = require('body-parser');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-// Middleware to parse JSON bodies
-app.use(bodyParser.json());
+module.exports = function addProxyMiddleware(app) {
+  app.use(
+    '/api/sch/payments',
+    createProxyMiddleware({
+      target: 'https://secure.myfees.lk',
+      changeOrigin: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'access-control-allow-origin': '*',
 
-// Enable CORS for all origins
-app.use(cors({
-  
-  }));
-  
-
-app.post('/api/sch/payments', async (req, res) => {
-  try {
-    // Forward the POST request to the desired URL
-    const response = await axios.post('https://secure.myfees.lk/api/sch/payments', req.body);
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-app.listen(3001, () => {
-  console.log('Proxy server is running on port 3001');
-});
+      }
+    }),
+  );
+};
