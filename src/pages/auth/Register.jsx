@@ -67,30 +67,15 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      fetch(baseUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-          "access-control-allow-origin": "https://www.thecatalyst.lk",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "/addPayment", // Assuming this is the route on your backend server
+        {
           apiKey: "KCBAE725KPTCGANOKA902101207",
-          studentName: name,
-          description: description,
-          amount: amount,
-          indexNumber: indexNumber,
-          email: email,
-          phoneNo: phoneNo,
-          classOrCourse: classOrCourse,
-          invoice: invoice,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setResponseData(data);
-        });
+          // Other data fields
+        }
+      );
+      console.log(response.data);
+      // Handle response data
 
       // const response = await axios.post(
       //   "/api",
@@ -115,7 +100,8 @@ const Register = () => {
       // );
       // console.log(response.data);
     } catch (error) {
-      console.log(error);
+      console.error("Error:", error.response ? error.response.data : error.message);
+
     }
   };
 
