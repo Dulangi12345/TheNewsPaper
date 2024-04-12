@@ -67,12 +67,10 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      fetch(baseUrl, {
+      fetch('https://thecatalyst.lk/register', {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
-          "access-control-allow-origin": "https://www.thecatalyst.lk",
         },
         body: JSON.stringify({
           apiKey: "KCBAE725KPTCGANOKA902101207",
