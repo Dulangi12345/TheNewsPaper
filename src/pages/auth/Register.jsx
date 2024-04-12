@@ -16,7 +16,6 @@ import {
 import photo from "../../assets/Login3.png";
 import axios from "axios";
 import { set } from "mongoose";
-import { response } from "express";
 
 const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
@@ -68,34 +67,55 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response  = axios
-        .post(
-          "/addPayment",
-          {
-            apiKey: "KCBAE725KPTCGANOKA902101207",
-            studentName: name,
-            description: description,
-            amount: amount,
-            indexNumber: indexNumber,
-            email: email,
-            phoneNo: phoneNo,
-            classOrCourse: classOrCourse,
-            invoice: invoice,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+      fetch(baseUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+          "access-control-allow-origin": "https://www.thecatalyst.lk",
+        },
+        body: JSON.stringify({
+          apiKey: "KCBAE725KPTCGANOKA902101207",
+          studentName: name,
+          description: description,
+          amount: amount,
+          indexNumber: indexNumber,
+          email: email,
+          phoneNo: phoneNo,
+          classOrCourse: classOrCourse,
+          invoice: invoice,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setResponseData(data);
+        });
 
-        console.log(response.data);
-       
-       
+      // const response = await axios.post(
+      //   "/api",
 
-     
+      //   {
+      //     apiKey: "KCBAE725KPTCGANOKA902101207",
+      //     studentName: name,
+      //     description: description,
+      //     amount: amount,
+      //     indexNumber: indexNumber,
+      //     email: email,
+      //     phoneNo: phoneNo,
+      //     classOrCourse: classOrCourse,
+      //     invoice: invoice,
+      //   },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "method": "POST",
+      //     },
+      //   }
+      // );
+      // console.log(response.data);
     } catch (error) {
-      console.error("Error:", error.response ? error.response.data : error.message);
+      console.log(error);
     }
   };
 
