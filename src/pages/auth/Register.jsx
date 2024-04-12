@@ -69,6 +69,7 @@ const Register = () => {
     try {
       fetch(baseUrl, {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
           "access-control-allow-origin": "*",
