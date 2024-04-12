@@ -68,7 +68,7 @@ const Register = () => {
   const addPayment = async () => {
     try {
       const response = await axios.post(
-        "/api/sch/payments",
+        "https://www.thecatalyst.lk",
 
         {
           apiKey: "KCBAE725KPTCGANOKA902101207",
