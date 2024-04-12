@@ -67,11 +67,9 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post(
-        "/addPayment", // Assuming this is the route on your backend server
-        {
+      const response = await axios.post({
           apiKey: "KCBAE725KPTCGANOKA902101207",
-          studentName: name,
+              studentName: name,
               description: description,
               amount: amount,
               indexNumber: indexNumber,
@@ -79,37 +77,12 @@ const Register = () => {
               phoneNo: phoneNo,
               classOrCourse: classOrCourse,
               invoice: invoice,
-          // Other data fields
-        }
-      );
-      console.log(response.data);
-      // Handle response data
+      
+        });
+        console.log(response.data);
 
-      // const response = await axios.post(
-      //   "/api",
-
-      //   {
-      //     apiKey: "KCBAE725KPTCGANOKA902101207",
-      //     studentName: name,
-      //     description: description,
-      //     amount: amount,
-      //     indexNumber: indexNumber,
-      //     email: email,
-      //     phoneNo: phoneNo,
-      //     classOrCourse: classOrCourse,
-      //     invoice: invoice,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "method": "POST",
-      //     },
-      //   }
-      // );
-      // console.log(response.data);
     } catch (error) {
-      console.error("Error:", error.response ? error.response.data : error.message);
-
+      console.log(error);
     }
   };
 
