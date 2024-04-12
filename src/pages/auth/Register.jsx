@@ -71,6 +71,14 @@ const Register = () => {
         "/addPayment", // Assuming this is the route on your backend server
         {
           apiKey: "KCBAE725KPTCGANOKA902101207",
+          studentName: name,
+              description: description,
+              amount: amount,
+              indexNumber: indexNumber,
+              email: email,
+              phoneNo: phoneNo,
+              classOrCourse: classOrCourse,
+              invoice: invoice,
           // Other data fields
         }
       );
