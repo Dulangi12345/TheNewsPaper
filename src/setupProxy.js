@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Enable CORS for all origins
 app.use(cors({
-    origin: 'https://www.thecatalyst.lk'
+  
   }));
   
 
