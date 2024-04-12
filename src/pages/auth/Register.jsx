@@ -67,29 +67,33 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      fetch('https://thecatalyst.lk/register', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          apiKey: "KCBAE725KPTCGANOKA902101207",
-              studentName: name,
-              description: description,
-              amount: amount,
-              indexNumber: indexNumber,
-              email: email,
-              phoneNo: phoneNo,
-              classOrCourse: classOrCourse,
-              invoice: invoice,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setResponseData(data);
+      axios
+        .post(
+          "https://thecatalyst.lk/register",
+          {
+            apiKey: "KCBAE725KPTCGANOKA902101207",
+            studentName: name,
+            description: description,
+            amount: amount,
+            indexNumber: indexNumber,
+            email: email,
+            phoneNo: phoneNo,
+            classOrCourse: classOrCourse,
+            invoice: invoice,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          setResponseData(response.data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
         });
-
 
       // const response = await axios.post(
       //   "/api",
