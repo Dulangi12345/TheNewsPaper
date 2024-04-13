@@ -8,7 +8,7 @@ const port = 3000;
 app.use(bodyParser.json());
 
 // Route to handle POST requests to /api/posts
-app.post('/api/posts', (req, res) => {
+app.post('https://jsonplaceholder.typicode.com/api/posts', (req, res) => {
   // Extract data from request body
   const { apiKey, studentName, description, amount, indexNumber, email, phoneNo, classOrCourse, invoice } = req.body;
 
