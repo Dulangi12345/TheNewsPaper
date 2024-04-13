@@ -68,7 +68,7 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-    fetch ( '/api/sch/payments', {
+    fetch ( 'https://secure.myfees.lk/api/sch/payments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
