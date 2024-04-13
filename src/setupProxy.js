@@ -1,8 +1,8 @@
-const { createProxyMiddleware } = require('http-proxy-middleware')
+import { createProxyMiddleware } from 'http-proxy-middleware'
 
-module.exports = function (app) {
+export default function (app) {
   app.use(
-    '/api',
+    '/api/sch/payments',
     createProxyMiddleware({
       target: 'https://secure.myfees.lk',
       changeOrigin: true,
