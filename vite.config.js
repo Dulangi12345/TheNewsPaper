@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import { createProxyMiddleware } from 'http-proxy-middleware'
 
 
 const manifestForPlugin = {
@@ -62,13 +61,7 @@ export default defineConfig({
       manifest : manifestForPlugin,
 
     }),
-    createProxyMiddleware({
-      '/api': {
-        target: 'https://secure.myfees.lk',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api/sch/payments'),
-      }
-    })
+    
 
   ],
 
