@@ -1,29 +1,20 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
 const app = express();
-const bodyParser = require('body-parser');
 
-// Middleware to parse JSON bodies
-app.use(bodyParser.json());
-
-// Enable CORS for all origins
-app.use(cors({
-    origin: 'https://www.thecatalyst.lk'
-  }));
-  
-
-app.post('/api/sch/payments', async (req, res) => {
+app.post('/addPayment', async (req, res) => {
   try {
-    // Forward the POST request to the desired URL
-    const response = await axios.post('https://secure.myfees.lk/api/sch/payments', req.body);
+    const response = await axios.post(
+      "https://secure.myfees.lk/api/sch/payments",
+      req.body // Assuming your request body contains the required data
+    );
     res.json(response.data);
   } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error:", error.response ? error.response.data : error.message);
+    res.status(500).json({ error: 'An error occurred' });
   }
 });
 
 app.listen(3001, () => {
-  console.log('Proxy server is running on port 3001');
+  console.log('Server is running on port 3001');
 });
