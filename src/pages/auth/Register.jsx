@@ -69,7 +69,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-       baseUrl
+      'http://localhost:3000/proxy'
       , {
         data: {
           apiKey: "KCBAE725KPTCGANOKA902101207",
