@@ -67,49 +67,34 @@ const Register = () => {
 
   const addPayment = async () => {
 
-
     try {
-      const response = await axios.post('https://jsonplaceholder.typicode.com/api/posts', {
-        
+      const response = await axios.post(
+        'https://jsonplaceholder.typicode.com/posts'
+      , {
+        data: {
           apiKey: "KCBAE725KPTCGANOKA902101207",
-          studentName: name,
-          description: description,
-          amount: amount,
-          indexNumber: indexNumber,
-          email: email,
-          phoneNo: phoneNo,
-          classOrCourse: classOrCourse,
-          invoice: invoice,
-        
-      },{
+              studentName: name,
+              description: description,
+              amount: amount,
+              indexNumber: indexNumber,
+              email: email,
+              phoneNo: phoneNo,
+              classOrCourse: classOrCourse,
+              invoice: invoice,
       
-        headers: {
-          "Content-Type": "application/json",
-        },});
-      console.log(response.data);
-      return response.data;
+        } 
+      }, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      
+      );
+        console.log(response.data);
+
     } catch (error) {
       console.log(error);
-      throw new Error("Error");
     }
-    // try {
-    //   const response = await axios.post({
-    //       apiKey: "KCBAE725KPTCGANOKA902101207",
-    //           studentName: name,
-    //           description: description,
-    //           amount: amount,
-    //           indexNumber: indexNumber,
-    //           email: email,
-    //           phoneNo: phoneNo,
-    //           classOrCourse: classOrCourse,
-    //           invoice: invoice,
-      
-    //     });
-    //     console.log(response.data);
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const handleSubmit = (e) => {
