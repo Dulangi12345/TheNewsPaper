@@ -69,7 +69,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        'https://jsonplaceholder.typicode.com/posts'
+       baseUrl
       , {
         data: {
           apiKey: "KCBAE725KPTCGANOKA902101207",
