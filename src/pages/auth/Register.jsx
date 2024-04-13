@@ -69,7 +69,7 @@ const Register = () => {
 
 
     try {
-      const response = await axios.post('api/posts', {
+      const response = await axios.post('/api/posts', {
         
           apiKey: "KCBAE725KPTCGANOKA902101207",
           studentName: name,
