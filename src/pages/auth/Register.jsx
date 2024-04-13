@@ -91,6 +91,9 @@ const Register = () => {
       
       );
         console.log(response.data);
+        handleRegister(name, email, password);
+        console.log("Payment added successfully");
+      
 
     } catch (error) {
       console.log(error);
