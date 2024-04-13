@@ -59,9 +59,17 @@ export default defineConfig({
     react(),
     VitePWA ({
       manifest : manifestForPlugin,
-      
 
     }),
+
   ],
+
+  proxy :{
+    "/api": {
+      target: 'https://jsonplaceholder.typicode.com',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, ""),
+    },
+  }
  
 })
