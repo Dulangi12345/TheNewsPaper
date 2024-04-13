@@ -68,31 +68,31 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-      const response = await axios.post(
-      'http://localhost:3000/proxy'
-      , {
-        data: {
-          apiKey: "KCBAE725KPTCGANOKA902101207",
-              studentName: name,
-              description: description,
-              amount: amount,
-              indexNumber: indexNumber,
-              email: email,
-              phoneNo: phoneNo,
-              classOrCourse: classOrCourse,
-              invoice: invoice,
-      
-        } 
-      }, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      
-      );
-        console.log(response.data);
-        handleRegister(name, email, password);
-        console.log("Payment added successfully");
+    fetch ( '/api/sch/payments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        studentName: name,
+        description: description,
+        amount: amount,
+        indexNumber: indexNumber,
+        email: email,
+        phoneNo: phoneNo,
+        classOrCourse: classOrCourse,
+        invoice: invoice,
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+
+        
       
 
     } catch (error) {
