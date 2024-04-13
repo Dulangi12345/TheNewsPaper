@@ -70,11 +70,7 @@ const Register = () => {
 
     try {
       const response = await axios.post('api/posts', {
-        method: 'POST',
-        Headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+        
           apiKey: "KCBAE725KPTCGANOKA902101207",
           studentName: name,
           description: description,
@@ -84,13 +80,14 @@ const Register = () => {
           phoneNo: phoneNo,
           classOrCourse: classOrCourse,
           invoice: invoice,
-        }),
-      });
-      if (response.ok) {
-        console.log(response.data);
-      }
-      const data = await response.json();
-      return data;
+        
+      },{
+      
+        headers: {
+          "Content-Type": "application/json",
+        },});
+      console.log(response.data);
+      return response.data;
     } catch (error) {
       console.log(error);
       throw new Error("Error");
