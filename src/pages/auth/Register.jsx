@@ -65,43 +65,28 @@ const Register = () => {
     setInvoice(e.target.value);
   };
 
+
+
   const addPayment = async () => {
-
-    try {
-    fetch ( '/api/sch/payments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        
-      },
-      body: JSON.stringify({
-        apiKey: "KCBAE725KPTCGANOKA902101207",
-        studentName: name,
-        description: description,
-        amount: amount,
-        indexNumber: indexNumber,
-        email: email,
-        phoneNo: phoneNo,
-        classOrCourse: classOrCourse,
-        invoice: invoice,
-      }),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    }); 
-
-        
-      
-
-    } catch (error) {
-      console.log(error);
-    }
+      try {
+          const response = await axios.post('https://www.thecatalyst.lk/api/sch/payments', {
+              apiKey: "KCBAE725KPTCGANOKA902101207",
+              studentName: name,
+              description: description,
+              amount: amount,
+              indexNumber: indexNumber,
+              email: email,
+              phoneNo: phoneNo,
+              classOrCourse: classOrCourse,
+              invoice: invoice,
+          });
+          
+          console.log('Success:', response.data);
+      } catch (error) {
+          console.error('Error:', error);
+      }
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoginLoading(true);
