@@ -12,7 +12,7 @@ app.use(express.static(join(__dirname, 'dist')));
 app.use(bodyParser.json());
 
 // Route handler for handling POST requests to /api/sch/payments
-app.post('/api/sch/payments', async (req, res) => {
+app.post('https://thecatalyst.lk/api/sch/payments', async (req, res) => {
   try {
     // Extract data from the request body
     const { name, description, amount, indexNumber, email, phoneNo, classOrCourse, invoice, apiKey } = req.body;
