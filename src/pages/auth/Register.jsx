@@ -66,35 +66,41 @@ const Register = () => {
   };
 
   const addPayment = async () => {
+
     try {
-        const response = await fetch('https://www.thecatalyst.lk/api/sch/payments', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                apiKey: "KCBAE725KPTCGANOKA902101207",
-                studentName: name,
-                description: description,
-                amount: amount,
-                indexNumber: indexNumber,
-                email: email,
-                phoneNo: phoneNo,
-                classOrCourse: classOrCourse,
-                invoice: invoice,
-            }),
-        });
+    fetch ( 'https://secure.myfees.lk/api/sch/payments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
         
-        if (!response.ok) {
-            throw new Error('Failed to add payment');
-        }
+      },
+      body: JSON.stringify({
+        apiKey: "KCBAE725KPTCGANOKA902101207",
+        studentName: name,
+        description: description,
+        amount: amount,
+        indexNumber: indexNumber,
+        email: email,
+        phoneNo: phoneNo,
+        classOrCourse: classOrCourse,
+        invoice: invoice,
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    }); 
+
         
-        const data = await response.json();
-        console.log('Success:', data);
+      
+
     } catch (error) {
-        console.error('Error:', error);
+      console.log(error);
     }
-};
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
