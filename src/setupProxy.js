@@ -29,23 +29,23 @@ app.use('/api/sch/payments', createProxyMiddleware({
   }
 }));
 
-app.post('/api/sch/payments', async (req, res) => {
-  const formData = req.body;
+// app.post('/api/sch/payments', async (req, res) => {
+//   const formData = req.body;
 
-  try {
-    const response = await axios.post('https://secure.myfees.lk/api/sch/payments', formData, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    });
-    console.log(response.data);
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).send('Error sending data to external API');
-  }
-});
+//   try {
+//     const response = await axios.post('https://secure.myfees.lk/api/sch/payments', formData, {
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       method: 'POST'
+//     });
+//     console.log(response.data);
+//     res.json(response.data);
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).send('Error sending data to external API');
+//   }
+// });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
