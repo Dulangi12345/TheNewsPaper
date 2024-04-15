@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "proxy": "https://secure.myfees.lk"
+    // "proxy": "https://secure.myfees.lk"
   },
   "dependencies": {
     "-": "^0.0.1",
