@@ -4,7 +4,7 @@ export default function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://secure.myfees.lk',
+      target: 'https://secure.myfees.lk/api/sch/payments',
       changeOrigin: true,
     }),
   )
