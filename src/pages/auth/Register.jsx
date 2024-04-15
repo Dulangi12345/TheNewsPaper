@@ -36,6 +36,7 @@ const Register = () => {
   const [classOrCourse, setClassOrCourse] = useState("");
   const [invoice, setInvoice] = useState("");
   const [responseData, setResponseData] = useState(null);
+  const [apiKey, setApiKey] = useState("KCBAE725KPTCGANOKA902101207");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -70,7 +71,7 @@ const Register = () => {
   const addPayment = async () => {
       try {
           const response = await axios.post('/api/sch/payments', {
-              apiKey: "KCBAE725KPTCGANOKA902101207",
+              apiKey: apiKey,
               studentName: name,
               description: description,
               amount: amount,
