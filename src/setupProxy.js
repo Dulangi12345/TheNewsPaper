@@ -27,6 +27,11 @@ app.post('/api/sch/payments', async (req, res) => {
         classOrCourse: classOrCourse,
         invoice: invoice,
         apiKey: apiKey,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       }
     );
 

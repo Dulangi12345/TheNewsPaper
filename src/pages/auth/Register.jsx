@@ -77,7 +77,7 @@ const Register = () => {
 const addPayment = async () => {
  try {
   const response = await axios.post(
-    'https://www.thecatalyst.lk/api/sch/payments'
+    'https://secure.myfees.lk/api/sch/payments'
     , {
     studentName: name,
     description: description,
@@ -89,7 +89,12 @@ const addPayment = async () => {
     invoice: invoice,
     apiKey: apiKey,
   },
-  axiosConfig
+{
+  headers: {
+    'Content-Type': 'application/json',
+  }
+}
+ 
 
 
 );
