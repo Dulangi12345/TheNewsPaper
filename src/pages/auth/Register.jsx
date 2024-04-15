@@ -38,6 +38,7 @@ const Register = () => {
   const [responseData, setResponseData] = useState(null);
   const [apiKey, setApiKey] = useState("KCBAE725KPTCGANOKA902101207");
 
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -67,26 +68,29 @@ const Register = () => {
   };
 
 
-
-  const addPayment = async () => {
-      try {
-          const response = await axios.post('/api/sch/payments', {
-              apiKey: apiKey,
-              studentName: name,
-              description: description,
-              amount: amount,
-              indexNumber: indexNumber,
-              email: email,
-              phoneNo: phoneNo,
-              classOrCourse: classOrCourse,
-              invoice: invoice,
-          });
-          
-          console.log('Success:', response.data);
-      } catch (error) {
-          console.error('Error:', error);
-      }
-  };
+const addPayment = async () => {
+ try {
+  const response = await axios.post(
+    '/api/sch/payments'
+    , {
+    studentName: name,
+    description: description,
+    amount: amount,
+    indexNumber: indexNumber,
+    email: email,
+    phoneNo: phoneNo,
+    classOrCourse: classOrCourse,
+    invoice: invoice,
+    apiKey: apiKey,
+  });
+  console.log(response);
+  setResponseData(response.data);
+  return response.data;
+  
+ } catch (error) {
+  console.error(error);
+ }
+};
   
   const handleSubmit = (e) => {
     e.preventDefault();
