@@ -18,15 +18,15 @@ app.post('/api/sch/payments', async (req, res) => {
     const response = await axios.post(
       'https://secure.myfees.lk/api/sch/payments',
       {
-        studentName: name,
-        description: description,
-        amount: amount,
-        indexNumber: indexNumber,
-        email: email,
-        phoneNo: phoneNo,
-        classOrCourse: classOrCourse,
-        invoice: invoice,
-        apiKey: apiKey,
+        name,
+        description,
+        amount,
+        indexNumber,
+        email,
+        phoneNo,
+        classOrCourse,
+        invoice,
+        apiKey
       },
       {
         headers: {

@@ -68,16 +68,11 @@ const Register = () => {
   };
 
 
-  const axiosConfig = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }
 
 const addPayment = async () => {
  try {
   const response = await axios.post(
-    'https://secure.myfees.lk/api/sch/payments'
+    '/api/sch/payments'
     , {
     studentName: name,
     description: description,
