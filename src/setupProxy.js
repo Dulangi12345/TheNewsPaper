@@ -11,7 +11,7 @@ const app = express();
 app.use(express.static(join(__dirname, 'dist')));
 app.use(bodyParser.json());
 
-app.post('https://thecatalyst.lk/api/sch/payments', async (req, res) => {
+app.post('https://www.thecatalyst.lk/api/sch/payments', async (req, res) => {
   try {
     const { name, description, amount, indexNumber, email, phoneNo, classOrCourse, invoice, apiKey } = req.body;
 
