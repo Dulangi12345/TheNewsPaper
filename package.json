@@ -8,8 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
-     "proxy": "https://secure.myfees.lk"
+    "deploy": "gh-pages -d dist"
+     
   },
   "dependencies": {
     "-": "^0.0.1",
