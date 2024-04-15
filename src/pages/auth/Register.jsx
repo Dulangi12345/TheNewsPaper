@@ -38,7 +38,6 @@ const Register = () => {
   const [responseData, setResponseData] = useState(null);
   const [apiKey, setApiKey] = useState("KCBAE725KPTCGANOKA902101207");
 
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -67,42 +66,35 @@ const Register = () => {
     setInvoice(e.target.value);
   };
 
+  const addPayment = async () => {
+    try {
+      const response = await fetch(
+        "/api/sch/payments",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            studentName: name,
+            description: description,
+            amount: amount,
+            indexNumber: indexNumber,
+            email: email,
+            phoneNo: phoneNo,
+            classOrCourse: classOrCourse,
+            invoice: invoice,
+            apiKey: apiKey,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-
-const addPayment = async () => {
- try {
-  const response = await axios.post(
-    '/api/sch/payments'
-    , {
-    studentName: name,
-    description: description,
-    amount: amount,
-    indexNumber: indexNumber,
-    email: email,
-    phoneNo: phoneNo,
-    classOrCourse: classOrCourse,
-    invoice: invoice,
-    apiKey: apiKey,
-  },
-{
-  headers: {
-    'Content-Type': 'application/json',
-  }
-}
- 
-
-
-);
-
-  console.log(response);
-  setResponseData(response.data);
-  return response.data;
-  
- } catch (error) {
-  console.error(error);
- }
-};
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoginLoading(true);
