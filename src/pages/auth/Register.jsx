@@ -68,6 +68,12 @@ const Register = () => {
   };
 
 
+  const axiosConfig = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+
 const addPayment = async () => {
  try {
   const response = await axios.post(
@@ -82,7 +88,12 @@ const addPayment = async () => {
     classOrCourse: classOrCourse,
     invoice: invoice,
     apiKey: apiKey,
-  });
+  },
+  axiosConfig
+
+
+);
+
   console.log(response);
   setResponseData(response.data);
   return response.data;
