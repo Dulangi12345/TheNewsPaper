@@ -17,7 +17,7 @@ app.use('/api/proxy', createProxyMiddleware({
   target: 'https://secure.myfees.lk',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/proxy': '/' 
+    '^/api/proxy': '/api/sch/payments' 
   },
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
