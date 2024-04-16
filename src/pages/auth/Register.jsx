@@ -90,15 +90,9 @@ const Register = () => {
         }
       );
     
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log("Response data:", responseData);
-      return responseData;
-    } else {
-      throw new Error(`Failed to add payment: ${response.statusText}`);
-    }
-
-    
+      const data = await response.json();
+      console.log(data);
+      setResponseData(data);
       
     } catch (error) {
       console.error(error);
