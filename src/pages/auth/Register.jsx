@@ -91,8 +91,21 @@ const Register = () => {
           }),
         }
       );
-      const data = await response.json();
-      console.log(data);
+      // Check if the response is successful (status code 2xx)
+    if (response.ok) {
+      // Parse the response data as JSON
+      const responseData = await response.json();
+      // Log the response data
+      console.log("Response data:", responseData);
+      // You can use the response data here or return it if needed
+      return responseData;
+    } else {
+      // If the response is not successful, throw an error
+      throw new Error(`Failed to add payment: ${response.statusText}`);
+    }
+
+    
+      
     } catch (error) {
       console.error(error);
     }
