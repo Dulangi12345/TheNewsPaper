@@ -56,12 +56,12 @@ export default defineConfig({
   base: "./",
   server :{
     proxy :{
-      '/api/sch/payments': {
-        target: 'https://myfees.free.beeceptor.com',
+      '/api/users': {
+        target: 'https://reqres.in/',
         changeOrigin: true,
       
         pathRewrite: {
-          '^/api/sch/payments': '/api/sch/payments' 
+          '^/api/users': '/api/users' 
         },
       }
     }

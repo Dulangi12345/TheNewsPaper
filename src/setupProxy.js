@@ -13,11 +13,11 @@ app.use(express.static(join(__dirname, 'dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use('/api/sch/payments', createProxyMiddleware({
-  target: 'https://myfees.free.beeceptor.com',
+app.use('/api/users', createProxyMiddleware({
+  target: 'https://reqres.in/',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/sch/payments': '/api/sch/payments' 
+    '^/api/users': '/api/users' 
   },
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
@@ -25,10 +25,14 @@ app.use('/api/sch/payments', createProxyMiddleware({
   }
 }));
 
-app.use(cors({
-  origin: 'https://www.thecatalyst.lk',
-  methods: 'POST' // Only allow POST requests
-}));
+app.post('/api/users', (req, res) => {
+  res.json({ success: true });
+});
+
+// app.use(cors({
+//   origin: 'https://www.thecatalyst.lk',
+//   methods: 'POST' // Only allow POST requests
+// }));
 
 
 const PORT = process.env.PORT || 3000;
