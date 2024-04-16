@@ -57,7 +57,7 @@ export default defineConfig({
   server :{
     proxy :{
       '/api/sch/payments': {
-        target: 'https://secure.myfees.lk',
+        target: 'https://myfees.free.beeceptor.com',
         changeOrigin: true,
       
         pathRewrite: {

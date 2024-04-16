@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use('/api/sch/payments', createProxyMiddleware({
-  target: 'https://secure.myfees.lk',
+  target: 'https://myfees.free.beeceptor.com',
   changeOrigin: true,
   pathRewrite: {
     '^/api/sch/payments': '/api/sch/payments' 
