@@ -76,10 +76,9 @@ const Register = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            
-              name:"test",
-              salary:"123",
-              age:"23"
+            "name":"test",
+            "salary":"123",
+            "age":"23"
             // studentName: name,
             // description: description,
             // amount: amount,

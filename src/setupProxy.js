@@ -12,29 +12,18 @@ app.use(express.static(join(__dirname, 'dist')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
 
-app.use(cors());
-
-
-app.post('/api/sch/payments', (req, res) => {
-  fetch('https://dummy.restapiexample.com/api/v1/create', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(req.body),
-  })
-  .then(response => response.json())
-  .then(data => {
-    
-    res.json(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  });
-});
+app.use('/api/sch/payments', createProxyMiddleware({
+  target: 'https://dummy.restapiexample.com',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/sch/payments': '/api/v1/create' 
+  },
+  onError: (err, req, res) => {
+    console.error('Proxy error:', err);
+    res.status(500).send('Proxy error');
+  }
+}));
 
 
 const PORT = process.env.PORT || 3000;
