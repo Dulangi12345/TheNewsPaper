@@ -12,9 +12,6 @@ app.use(express.static(join(__dirname, 'dist')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors({
-  origin: 'https://www.thecatalyst.lk'
-}));
 
 app.use('/api/sch/payments', createProxyMiddleware({
   target: 'https://secure.myfees.lk',
