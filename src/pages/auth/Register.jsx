@@ -69,7 +69,7 @@ const Register = () => {
   const addPayment = async () => {
     try {
       const response = await fetch(
-        "/api/sch/payments",
+        "/api/proxy",
         {
           method: "POST",
           headers: {

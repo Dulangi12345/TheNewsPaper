@@ -13,11 +13,11 @@ app.use(express.static(join(__dirname, 'dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use('/api/sch/payments', createProxyMiddleware({
-  target: 'https://dummy.restapiexample.com',
+app.use('/api/proxy', createProxyMiddleware({
+  target: 'https://secure.myfees.lk',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/sch/payments': '/' 
+    '^/api/proxy': '/' 
   },
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
