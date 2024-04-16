@@ -12,27 +12,29 @@ app.use(express.static(join(__dirname, 'dist')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(bodyParser.json());
 
-app.use('/api/users', createProxyMiddleware({
-  target: 'https://reqres.in/',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api/users': '/api/users' 
-  },
-  onError: (err, req, res) => {
-    console.error('Proxy error:', err);
-    res.status(500).send('Proxy error');
-  }
-}));
+app.use(cors());
 
-app.post('/api/users', (req, res) => {
-  res.json({ success: true });
+
+app.post('/api/sch/payments', (req, res) => {
+  fetch('https://dummy.restapiexample.com/api/v1/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(req.body),
+  })
+  .then(response => response.json())
+  .then(data => {
+    
+    res.json(data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  });
 });
-
-// app.use(cors({
-//   origin: 'https://www.thecatalyst.lk',
-//   methods: 'POST' // Only allow POST requests
-// }));
 
 
 const PORT = process.env.PORT || 3000;

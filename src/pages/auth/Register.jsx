@@ -76,15 +76,19 @@ const Register = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            studentName: name,
-            description: description,
-            amount: amount,
-            indexNumber: indexNumber,
-            email: email,
-            phoneNo: phoneNo,
-            classOrCourse: classOrCourse,
-            invoice: invoice,
-            apiKey: apiKey,
+            
+              name:"test",
+              salary:"123",
+              age:"23"
+            // studentName: name,
+            // description: description,
+            // amount: amount,
+            // indexNumber: indexNumber,
+            // email: email,
+            // phoneNo: phoneNo,
+            // classOrCourse: classOrCourse,
+            // invoice: invoice,
+            // apiKey: apiKey,
           }),
         }
       );

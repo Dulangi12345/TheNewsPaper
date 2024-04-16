@@ -56,12 +56,12 @@ export default defineConfig({
   base: "./",
   server :{
     proxy :{
-      '/api/users': {
-        target: 'https://reqres.in/',
+      '/api/sch/payments': {
+        target: 'https://dummy.restapiexample.com',
         changeOrigin: true,
       
         pathRewrite: {
-          '^/api/users': '/api/users' 
+          '^/api/sch/payments': '/create' 
         },
       }
     }
