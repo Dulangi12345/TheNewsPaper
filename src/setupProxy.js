@@ -17,7 +17,7 @@ app.use('/api/sch/payments', createProxyMiddleware({
   target: 'https://dummy.restapiexample.com',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/sch/payments': '/api/v1/create' 
+    '^/api/sch/payments': '/' 
   },
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
