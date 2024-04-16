@@ -76,31 +76,25 @@ const Register = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "name":"test",
-            "salary":"123",
-            "age":"23"
-            // studentName: name,
-            // description: description,
-            // amount: amount,
-            // indexNumber: indexNumber,
-            // email: email,
-            // phoneNo: phoneNo,
-            // classOrCourse: classOrCourse,
-            // invoice: invoice,
-            // apiKey: apiKey,
+          
+            studentName: name,
+            description: description,
+            amount: amount,
+            indexNumber: indexNumber,
+            email: email,
+            phoneNo: phoneNo,
+            classOrCourse: classOrCourse,
+            invoice: invoice,
+            apiKey: apiKey,
           }),
         }
       );
-      // Check if the response is successful (status code 2xx)
+    
     if (response.ok) {
-      // Parse the response data as JSON
       const responseData = await response.json();
-      // Log the response data
       console.log("Response data:", responseData);
-      // You can use the response data here or return it if needed
       return responseData;
     } else {
-      // If the response is not successful, throw an error
       throw new Error(`Failed to add payment: ${response.statusText}`);
     }
 
