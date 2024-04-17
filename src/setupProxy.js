@@ -25,6 +25,13 @@ app.use('/api/proxy', createProxyMiddleware({
   }
 }));
 
+app.post('/api/sch/payments', (req, res) => {
+  // Handle POST requests to /api/sch/payments
+  // You can access request body parameters using req.body
+  console.log('Received payment data:', req.body);
+  res.json({ status: 'success', message: 'Payment received successfully' });
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
