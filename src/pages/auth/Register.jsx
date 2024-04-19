@@ -67,7 +67,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post( '/api/addpayment',{
+      const response = await axios.post( baseUrl,{
         studentName: name,
         description: description,
         amount: amount,
