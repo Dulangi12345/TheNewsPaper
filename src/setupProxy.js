@@ -4,22 +4,32 @@ import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser'; 
 import cors from 'cors';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import axios from 'axios';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const router = express.Router();
+
+app.use(cors(
+  {
+    origin: 'https://thecatalyst.lk',
+    methods : 'GET,POST',
+    allowedHeaders: 'Content-Type,Authorization',
+  }
+));
 
 app.use(express.static(join(__dirname, 'dist')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use('/api/proxy', createProxyMiddleware({
-  target: 'https://secure.myfees.lk',
+app.use('/', createProxyMiddleware({
+  target: 'https://secure.myfees.lk/api/sch/payments',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/proxy': '/api/sch/payments' 
+    '^/api/sch/payments': '/'
   },
+
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
     res.status(500).send('Proxy error');
@@ -28,15 +38,19 @@ app.use('/api/proxy', createProxyMiddleware({
 
 
 
-// Custom route for /api/sch/payments
-router.post('/', (req, res) => {
-  // Handle POST requests to /api/sch/payments
-  // You can access request body parameters using req.body
-  console.log('Received payment data:', req.body);
-  res.json({ status: 'success', message: 'Payment received successfully' });
+
+router.post('/', async (req, res) => {
+  try {
+    const response  = await axios.post('https://secure.myfees.lk/api/sch/payments', req.body);
+    res.json(response.data);
+    console.log(response.data);
+    
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Internal Server Error');  
+  }
 });
 
-// Mount the router to the /api/sch/payments endpoint
 app.use('/api/sch/payments', router);
 
 

@@ -68,31 +68,27 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await fetch(
-        "/api/proxy",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-          
-            studentName: name,
-            description: description,
-            amount: amount,
-            indexNumber: indexNumber,
-            email: email,
-            phoneNo: phoneNo,
-            classOrCourse: classOrCourse,
-            invoice: invoice,
-            apiKey: apiKey,
-          }),
-        }
-      );
-    
-      const data = await response.json();
-      console.log(data);
-      setResponseData(data);
+      const response = await axios.post( 'https://thecatalyst.lk/',
+
+    {
+      studentName: name,
+      description: description,
+      amount: amount,
+      indexNumber: indexNumber,
+      email: email,
+      phoneNo: phoneNo,
+      classOrCourse: classOrCourse,
+      invoice: invoice,
+      apiKey: apiKey,
+      
+    },{
+      headers :{
+        'Content-Type': 'application/json',
+      
+      }
+    }
+  
+  )
       
     } catch (error) {
       console.error(error);
