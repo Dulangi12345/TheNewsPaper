@@ -16,6 +16,7 @@ import {
 import photo from "../../assets/Login3.png";
 import axios from "axios";
 import { set } from "mongoose";
+import { toUnitless } from "@mui/material/styles/cssUtils";
 
 const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
@@ -68,28 +69,35 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post( 'https://www.thecatalyst.lk/api',
-
-    {
-      studentName: name,
-      description: description,
-      amount: amount,
-      indexNumber: indexNumber,
-      email: email,
-      phoneNo: phoneNo,
-      classOrCourse: classOrCourse,
-      invoice: invoice,
-      apiKey: apiKey,
-      
-    },{
-      headers :{
-        'Content-Type': 'application/json',
-      
+      const response = await axios.post( '/api/posts',{
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
       }
-    }
-  
-  )
+
+
+    // {
+    //   studentName: name,
+    //   description: description,
+    //   amount: amount,
+    //   indexNumber: indexNumber,
+    //   email: email,
+    //   phoneNo: phoneNo,
+    //   classOrCourse: classOrCourse,
+    //   invoice: invoice,
+    //   apiKey: apiKey,
       
+    // },{
+    //   headers :{
+    //     'Content-Type': 'application/json',
+      
+    //   }
+    // }
+    
+  
+  );
+  console.log(response.data);
+  console.log(response.data);
     } catch (error) {
       console.error(error);
     }

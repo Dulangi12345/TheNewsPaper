@@ -54,18 +54,18 @@ const manifestForPlugin = {
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
-  // server :{
-  //   proxy :{
-  //     '/api/proxy': {
-  //       target: 'https://secure.myfees.lk',
-  //       changeOrigin: true,
-      
-  //       pathRewrite: {
-  //         '^/api/proxy': '/' 
-  //       },
-  //     }
-  //   }
-  // },
+  server :{
+    proxy:{
+      '/api': {
+        target: 'http://jsonplaceholder.typicode.com',
+        changeOrigin: true,
+        configure: (proxy, options) => {
+          
+        },
+      },
+    
+    }
+  },
   plugins: [
     react(),
     VitePWA ({
