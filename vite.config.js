@@ -56,10 +56,11 @@ export default defineConfig({
   base: "./",
   server :{
     proxy:{
-      '/api': {
+      '/api/sch/payments': {
         target: 'https://secure.myfees.lk',
         changeOrigin: true,
         secure:false,
+
         
         configure: (proxy, options) => {
           proxy.on('error', (err, req, res) => {

@@ -15,8 +15,6 @@ import {
 } from "firebase/firestore/lite";
 import photo from "../../assets/Login3.png";
 import axios from "axios";
-import { set } from "mongoose";
-import { toUnitless } from "@mui/material/styles/cssUtils";
 
 const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
@@ -69,7 +67,8 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post( 'https://secure.myfees.lk/api/sch/payments',{
+      const response = await axios.post( baseUrl,{
+      
         studentName: name,
           description: description,
           amount: amount,
