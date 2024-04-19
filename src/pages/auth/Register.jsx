@@ -68,17 +68,25 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-      const response = await axios.post('/api/data', {
-        // Add any data you want to send in the request body here
-        // For example:
-        studentName: 'John Doe',
-        age: 25,
-        email: 'john@example.com'
-      });
+      const response = await axios.post( baseUrl ,{
+       
+        studentName: name,
+        description: description,
+        amount: amount,
+        indexNumber: indexNumber,
+        email: email,
+        phoneNo: phoneNo,
+        classOrCourse: classOrCourse,
+        invoice: invoice,
+        apiKey: apiKey,
+      }
   
-      console.log('Response:', response.data);
+
+    );
+    console.log(response)
+
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error(error);
     }
     
 
