@@ -57,7 +57,7 @@ export default defineConfig({
   server :{
     proxy:{
       '/api': {
-        target: 'http://jsonplaceholder.typicode.com',
+        target: 'https://secure.myfees.lk',
         changeOrigin: true,
         secure:false,
         
