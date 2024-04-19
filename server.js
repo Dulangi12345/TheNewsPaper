@@ -1,68 +1,38 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import express from 'express'
-import { createProxyMiddleware  } from 'http-proxy-middleware'
-import cors from 'cors'
-import bodyParser from 'body-parser'
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+import { fileURLToPath } from 'url';
+import { createProxyServer } from 'http-proxy';
+import cors from 'cors';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PORT = process.env.PORT || 5173;
 
-const app = express()
+const proxy = createProxyServer({});
 
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url);
 
-app.use (express.json())
-
-
-const PORT = process.env.PORT || 3000
-
-
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  if (parsedUrl.pathname.startsWith('/api')) {
+    // API endpoint
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'Hello from server' }));
+  } else {
+    // Serve static files
+    const filePath = path.join(__dirname, 'dist', parsedUrl.pathname);
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('File not found');
+      } else {
+        res.writeHead(200);
+        res.end(data);
+      }
+    });
+  }
 });
 
-app.use(cors())
-
-app.use(bodyParser.json());
-
-// POST endpoint to handle the incoming data
-app.post('/api/data', (req, res) => {
-  // Extract data from the request body
-  const { studentName, age, email } = req.body;
-
-  // Do something with the data (e.g., save it to a database)
-  console.log('Received data:', { studentName, age, email });
-
-  // Respond with a success message
-  res.status(200).json({ message: 'Data received successfully' });
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-app.use(bodyParser.json());
-
-// POST endpoint to handle the incoming data
-app.post('/api/data', (req, res) => {
-  // Extract data from the request body
-  const { studentName, age, email } = req.body;
-
-  // Do something with the data (e.g., save it to a database)
-  console.log('Received data:', { studentName, age, email });
-
-  // Respond with a success message
-  res.status(200).json({ message: 'Data received successfully' });
-});
-
-
-app.get('/api' , (req , res) => {
-  res.json({
-    message: 'Hello from server'
-  })
-})
-
-
-
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
-
-

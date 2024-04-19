@@ -68,7 +68,7 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-      const response = await axios.post('https://www.thecatalyst.lk/api/data', {
+      const response = await axios.post('/api/data', {
         // Add any data you want to send in the request body here
         // For example:
         studentName: 'John Doe',
