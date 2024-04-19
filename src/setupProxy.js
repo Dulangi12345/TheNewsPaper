@@ -12,7 +12,7 @@ const router = express.Router();
 
 app.use(cors(
   {
-    origin: 'https://thecatalyst.lk',
+    origin: 'https://www.thecatalyst.lk',
     methods : 'GET,POST',
     allowedHeaders: 'Content-Type,Authorization',
   }
