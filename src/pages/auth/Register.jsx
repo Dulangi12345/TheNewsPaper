@@ -68,15 +68,22 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-     const response = await axios.get( '/api');
-      console.log(response)
-    
+      const response = await axios.post('https://www.thecatalyst.lk/api/data', {
+        // Add any data you want to send in the request body here
+        // For example:
+        studentName: 'John Doe',
+        age: 25,
+        email: 'john@example.com'
+      });
+  
+      console.log('Response:', response.data);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
     
 
       
-    } catch (error) {
-      console.error(error);
-    }
+  
     // try {
     //   const response = await axios.post( '/api' ,{
        
