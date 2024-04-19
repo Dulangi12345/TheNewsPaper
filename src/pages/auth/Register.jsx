@@ -68,7 +68,7 @@ const Register = () => {
 
   const addPayment = async () => {
     try {
-      const response = await axios.post( 'https://www.thecatalyst.lk/',
+      const response = await axios.post( 'https://www.thecatalyst.lk/api',
 
     {
       studentName: name,

@@ -23,11 +23,11 @@ app.use(express.static(join(__dirname, 'dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use('/', createProxyMiddleware({
+app.use('/api', createProxyMiddleware({
   target: 'https://secure.myfees.lk/api/sch/payments',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/sch/payments': '/'
+    '^/api': ''
   },
 
   onError: (err, req, res) => {
@@ -39,19 +39,19 @@ app.use('/', createProxyMiddleware({
 
 
 
-router.post('/', async (req, res) => {
-  try {
-    const response  = await axios.post('https://secure.myfees.lk/api/sch/payments', req.body);
-    res.json(response.data);
-    console.log(response.data);
+// router.post('/', async (req, res) => {
+//   try {
+//     const response  = await axios.post('https://secure.myfees.lk/api/sch/payments', req.body);
+//     res.json(response.data);
+//     console.log(response.data);
     
-  } catch (error) {
-    console.error(error); 
-    res.status(500).send('Internal Server Error');  
-  }
-});
+//   } catch (error) {
+//     console.error(error); 
+//     res.status(500).send('Internal Server Error');  
+//   }
+// });
 
-app.use('/api/sch/payments', router);
+// app.use('/api/sch/payments', router);
 
 
 
