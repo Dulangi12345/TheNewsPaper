@@ -66,33 +66,39 @@ const Register = () => {
   };
 
   const addPayment = async () => {
+
     try {
-      const response = await axios.post( '/api' ,{
-        studentName: name,
-        description: description,
-        amount: amount,
-        indexNumber: indexNumber,
-        email: email,
-        phoneNo: phoneNo,
-        classOrCourse: classOrCourse,
-        invoice: invoice,
-        apiKey: apiKey,
-      }
-      // ,{
-     
-        
-      // },{
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
+     const response = await axios.get( '/api');
+      console.log(response)
+    
+    
 
-    );
-    console.log(response)
-
+      
     } catch (error) {
       console.error(error);
     }
+    // try {
+    //   const response = await axios.post( '/api' ,{
+       
+    //     studentName: name,
+
+    //     description: description,
+    //     amount: amount,
+    //     indexNumber: indexNumber,
+    //     email: email,
+    //     phoneNo: phoneNo,
+    //     classOrCourse: classOrCourse,
+    //     invoice: invoice,
+    //     apiKey: apiKey,
+    //   }
+  
+
+    // );
+    // console.log(response)
+
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const handleSubmit = (e) => {
