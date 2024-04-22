@@ -68,7 +68,19 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-      handleRegister(name, email, password);
+      const response = await axios.post('/api', {
+        apiKey: apiKey,
+        studentName: name,
+        description: description,
+        amount: amount,
+        indexNumber: indexNumber,
+        email: email,
+        phoneNo: phoneNo,
+        classOrCourse: classOrCourse,
+        invoice: invoice,
+      });
+      setResponseData(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -329,18 +341,18 @@ const Register = () => {
                   onChange={handleInvoice}
                 />
               </div>
-              {/* <input
+              <input
                 type="hidden"
                 id="apiKey"
                 value="KCBAE725KPTCGANOKA902101207"
-              /> */}
+              />
 
               {/* <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
                             </div> */}
 
               <button
-                onClick={handleRegister}
+                onClick={handleSubmit}
                 type="submit"
                 className="w-full block bg-black hover:bg-[#20615B] text-white font-semibold rounded-lg px-4 py-3 mt-6"
                 disabled={loginLoading}
