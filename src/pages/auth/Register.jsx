@@ -68,61 +68,12 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-      const response = await axios.post( '/api' ,{
-       
-        studentName: name,
-        description: description,
-        amount: amount,
-        indexNumber: indexNumber,
-        email: email,
-        phoneNo: phoneNo,
-        classOrCourse: classOrCourse,
-        invoice: invoice,
-        apiKey: apiKey,
-      } , {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://www.thecatalyst.lk',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-
-        }
-      }
-  
-
-    );
-    console.log(response)
-
+      handleRegister(name, email, password);
     } catch (error) {
-      console.error(error);
+      console.error("Error adding document: ", error);
     }
     
 
-      
-  
-    // try {
-    //   const response = await axios.post( '/api' ,{
-       
-    //     studentName: name,
-
-    //     description: description,
-    //     amount: amount,
-    //     indexNumber: indexNumber,
-    //     email: email,
-    //     phoneNo: phoneNo,
-    //     classOrCourse: classOrCourse,
-    //     invoice: invoice,
-    //     apiKey: apiKey,
-    //   }
-  
-
-    // );
-    // console.log(response)
-
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
 
   const handleSubmit = (e) => {
@@ -378,18 +329,18 @@ const Register = () => {
                   onChange={handleInvoice}
                 />
               </div>
-              <input
+              {/* <input
                 type="hidden"
                 id="apiKey"
                 value="KCBAE725KPTCGANOKA902101207"
-              />
+              /> */}
 
               {/* <div className="text-right mt-2">
                                 <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
                             </div> */}
 
               <button
-                onClick={handleSubmit}
+                onClick={handleRegister}
                 type="submit"
                 className="w-full block bg-black hover:bg-[#20615B] text-white font-semibold rounded-lg px-4 py-3 mt-6"
                 disabled={loginLoading}

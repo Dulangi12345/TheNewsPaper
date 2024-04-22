@@ -54,31 +54,31 @@ const manifestForPlugin = {
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
-  server :{
-    proxy:{
-      '/api': {
-        target: 'https://secure.myfees.lk',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api/sch/payments'),
+  // server :{
+  //   proxy:{
+  //     '/api': {
+  //       target: 'https://secure.myfees.lk',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, '/api/sch/payments'),
        
 
         
-        configure: (proxy, options) => {
-          proxy.on('error', (err, req, res) => {
-            console.error(err);
-          });
-          proxy.on('proxyReq', (proxyReq, req, res) => {
-            console.log('Sending Request to the Target:', req.method, req.url);
-          });
-          proxy.on('proxyRes', (proxyRes, req, res) => {
-            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+  //       configure: (proxy, options) => {
+  //         proxy.on('error', (err, req, res) => {
+  //           console.error(err);
+  //         });
+  //         proxy.on('proxyReq', (proxyReq, req, res) => {
+  //           console.log('Sending Request to the Target:', req.method, req.url);
+  //         });
+  //         proxy.on('proxyRes', (proxyRes, req, res) => {
+  //           console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
 
-          });
-        },
-      },
+  //         });
+  //       },
+  //     },
     
-    }
-  },
+  //   }
+  // },
   plugins: [
     react(),
     VitePWA ({
