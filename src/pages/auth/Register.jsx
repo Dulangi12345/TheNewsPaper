@@ -68,8 +68,9 @@ const Register = () => {
   const addPayment = async () => {
 
     try {
-      const response = await axios.post('/api', {
-        apiKey: apiKey,
+   
+      const response = await axios.post( '/api' ,{
+       
         studentName: name,
         description: description,
         amount: amount,
@@ -81,11 +82,42 @@ const Register = () => {
       });
       setResponseData(response.data);
       console.log(response.data);
-    } catch (error) {
-      console.error("Error adding document: ", error);
+
+     
+      }
+  
+
+    catch (error) {
+    console.log(response)
+
+
     }
     
 
+      
+  
+    // try {
+    //   const response = await axios.post( '/api' ,{
+       
+    //     studentName: name,
+
+    //     description: description,
+    //     amount: amount,
+    //     indexNumber: indexNumber,
+    //     email: email,
+    //     phoneNo: phoneNo,
+    //     classOrCourse: classOrCourse,
+    //     invoice: invoice,
+    //     apiKey: apiKey,
+    //   }
+  
+
+    // );
+    // console.log(response)
+
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const handleSubmit = (e) => {
