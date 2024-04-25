@@ -13,131 +13,56 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore/lite";
-import photo from "../../assets/Login3.png";
 import axios from "axios";
-
-const baseUrl = "https://secure.myfees.lk/api/sch/payments";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
+  const [amount, setAmount] = useState("");
+  const [classOrCourse, setClassOrCourse] = useState("");
+  const [description, setDescription] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [invoice, setInvoiceNumber] = useState("");
+  const [indexNo, setIndexNo] = useState("");
+  const [apiKey, setApiKey] = useState("KCBAE725KPTCGANOKA902101207");
   const [error, setError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [indexNumber, setIndexNumber] = useState("");
 
-  const [phoneNo, setPhoneNo] = useState("");
-  const [classOrCourse, setClassOrCourse] = useState("");
-  const [invoice, setInvoice] = useState("");
-  const [responseData, setResponseData] = useState(null);
-  const [apiKey, setApiKey] = useState("KCBAE725KPTCGANOKA902101207");
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleDescription = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleAmount = (e) => {
-    setAmount(e.target.value);
-  };
-
-  const handleIndexNumber = (e) => {
-    setIndexNumber(e.target.value);
-  };
-
-  const handlePhoneNo = (e) => {
-    setPhoneNo(e.target.value);
-  };
-
-  const handleClassOrCourse = (e) => {
-    setClassOrCourse(e.target.value);
-  };
-
-  const handleInvoice = (e) => {
-    setInvoice(e.target.value);
-  };
-
-  const addPayment = async () => {
-
-    try {
-   
-      const response = await axios.post( '/api' ,{
-       
-        studentName: name,
-        description: description,
-        amount: amount,
-        indexNumber: indexNumber,
-        email: email,
-        phoneNo: phoneNo,
-        classOrCourse: classOrCourse,
-        invoice: invoice,
-      });
-      setResponseData(response.data);
-      console.log(response.data);
-
-     
-      }
-  
-
-    catch (error) {
-    console.log(response)
-
-
-    }
-    
-
-      
-  
-    // try {
-    //   const response = await axios.post( '/api' ,{
-       
-    //     studentName: name,
-
-    //     description: description,
-    //     amount: amount,
-    //     indexNumber: indexNumber,
-    //     email: email,
-    //     phoneNo: phoneNo,
-    //     classOrCourse: classOrCourse,
-    //     invoice: invoice,
-    //     apiKey: apiKey,
-    //   }
-  
-
-    // );
-    // console.log(response)
-
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  };
-
-  const handleSubmit = (e) => {
+  const handlePayment = async (e) => {
     e.preventDefault();
     setLoginLoading(true);
-    addPayment(
-      studentName,
-      description,
-      amount,
-      indexNumber,
-      email,
-      phoneNo,
-      classOrCourse,
-      invoice
-    );
+    try {
+      const data = {
+        email: email,
+        studentName: name,
+        amount: amount,
+        classOrCourse: classOrCourse,
+        description: description,
+        phoneNo: phoneNo,
+        invoice: invoice,
+        apiKey: apiKey,
+        indexNumber: indexNo,
+      };
+
+      try {
+        await axios.post("/api", data).then((response) => {
+          
+          console.log(response);
+          handleRegister(e);
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
-  const handleRegister = async (name, email, password) => {
-    // e.preventDefault();
-    // setLoginLoading(true);
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setLoginLoading(true);
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -155,14 +80,7 @@ const Register = () => {
           uid: user.uid,
           name: name,
           email: email,
-
           role: "user",
-          description: description,
-          amount: amount,
-          indexNumber: indexNumber,
-          phoneNo: phoneNo,
-          classOrCourse: classOrCourse,
-          invoice: invoice,
         });
 
         // Send email verification
@@ -199,27 +117,31 @@ const Register = () => {
   return (
     <div>
       <section className="flex flex-col md:flex-row h-screen items-center">
-        <div className="bg-white hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-          <img src={photo} alt="" className="w-full h-full object-cover" />
+        <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+          <img
+            src="https://source.unsplash.com/random"
+            alt=""
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <div
           className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
                     flex items-center justify-center"
         >
-          <div className="w-full ">
-            <h1 className="text-3xl md:text-3xl font-bold leading-tight mt-12 text-[#20615B]">
+          <div className="w-full h-100">
+            <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
               Create an account
             </h1>
 
             <form
-              className="mt-6 h-96"
+              className="mt-6 "
+              onSubmit={handlePayment}
+              id="form-container"
               style={{
+                height: "500px",
                 overflow: "scroll",
               }}
-              id="payment-form"
-              onSubmit={handleSubmit}
-              method="post"
             >
               {error && <p className="text-red-500">{error}</p>}
               {successMessage && (
@@ -232,11 +154,11 @@ const Register = () => {
                 <input
                   type="text"
                   name="studentName"
-                  value={name}
                   id="studentName"
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter Full Name"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                   autoFocus
                   required
                 />
@@ -246,147 +168,166 @@ const Register = () => {
                   Email Address
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
-                  value={email}
                   id="email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter Email Address"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                   autoFocus
                   required
                 />
               </div>
 
               <div className="mt-4">
-                <label className="block text-gray-700">Password</label>
-
-                <div className="flex flex-col  w-full rounded-lg items-end">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter Password"
-                    minLength="6"
-                    className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
+                <label className="block text-gray-700" for="password">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter Password"
+                  minLength="6"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
               focus:bg-white focus:outline-none"
-                    required
-                  />
-
-                  <button
-                    type="button"
-                    className="text-gray-600 cursor-pointer underline "
-                    onClick={togglePasswordVisibility}
-                  >
-                    {showPassword ? "Hide" : "Show"}
-                  </button>
-                </div>
+                  required
+                />
               </div>
 
-              <div class="mt-4">
-                <label for="description" className="block text-gray-700">
-                  Affliated University or Institute
+              {/* payment details */}
+
+              <div className="mt-4">
+                <label className="block text-gray-700" for="description">
+                  University or Institute
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none"
-                  id="description"
                   name="description"
-                  placeholder="Enter Affliated University or Institute"
-                  onChange={handleDescription}
-                  required
-                />
-              </div>
-              <div class="mt-4">
-                <label for="amount" className="block text-gray-700">
-                  Payment Amount
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none"
-                  id="amount"
-                  name="amount"
-                  placeholder="Enter Payment Amount"
-                  onChange={handleAmount}
-                  required
-                />
-              </div>
-              <div class="mt-4">
-                <label for="indexNumber" className="block text-gray-700">
-                  Index number
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none"
-                  id="indexNumber"
-                  name="indexNumber"
-                  placeholder="Enter index number"
-                  onChange={handleIndexNumber}
+                  id="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Enter name of university or institute "
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
                   required
                 />
               </div>
 
-              <div class="mt-4">
-                <label for="phoneNo" className="block text-gray-700">
+              <div className="mt-4">
+                <label className="block text-gray-700" for="amount">
+                  Payment amount
+                </label>
+                <input
+                  type="text"
+                  name="amount"
+                  id="amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="Enter payment amount  "
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                  required
+                />
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-gray-700" for="phoneNo">
                   Mobile Number
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none"
-                  id="phoneNo"
                   name="phoneNo"
-                  placeholder="Enter Mobile Number"
-                  onChange={handlePhoneNo}
-                />
-              </div>
-              <div class="mt-4">
-                <label for="classOrCourse" className="block text-gray-700">
-                  Payment Category
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none"
-                  id="classOrCourse"
-                  name="classOrCourse"
-                  placeholder="Enter Payment Category"
-                  onChange={handleClassOrCourse}
+                  id="phoneNo"
+                  value={phoneNo}
+                  onChange={(e) => setPhoneNo(e.target.value)}
+                  placeholder="Enter mobile number"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
                   required
                 />
               </div>
-              <div class="mt-4">
-                <label for="invoice" className="block text-gray-700">
+
+              <div className="mt-4">
+                <label className="block text-gray-700" for="indexNo">
+                  {" "}
+                  Enter Index number
+                </label>
+                <input
+                  type="text"
+                  name="indexNo"
+                  id="indexNo"
+                  value={indexNo}
+                  onChange={(e) => setIndexNo(e.target.value)}
+                  placeholder="Enter Index Number"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                  required
+                />
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-gray-700" for="classOrCourse">
+                  class or Course
+                </label>
+                <input
+                  type="text"
+                  name="classOrCourse"
+                  id="classOrCourse"
+                  value={classOrCourse}
+                  onChange={(e) => setClassOrCourse(e.target.value)}
+                  placeholder="Enter class Or Course"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                  required
+                />
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-gray-700" for="invoice">
                   Invoice Number
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 rounded-lg focus:border-[#20615B]  mt-2 border focus:border-blue-500
-                  focus:bg-white focus:outline-none"
-                  id="invoice"
                   name="invoice"
-                  placeholder="Enter Invoice Number"
-                  onChange={handleInvoice}
+                  id="invoice"
+                  value={invoice}
+                  onChange={(e) => setInvoiceNumber(e.target.value)}
+                  placeholder="Enter invoice number"
+                  minLength="6"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                  required
                 />
               </div>
-              <input
-                type="hidden"
-                id="apiKey"
-                value="KCBAE725KPTCGANOKA902101207"
-              />
+
+              <div className="mt-4">
+                <input
+                  type="hidden"
+                  name="apiKey"
+                  id="apiKey"
+                  value={apiKey}
+                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+              focus:bg-white focus:outline-none"
+                  required
+                />
+              </div>
 
               {/* <div className="text-right mt-2">
-                                <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
-                            </div> */}
+                <a
+                  href="#"
+                  className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
+                >
+                  Forgot Password?
+                </a>
+              </div> */}
 
               <button
-                onClick={handleSubmit}
                 type="submit"
-                className="w-full block bg-black hover:bg-[#20615B] text-white font-semibold rounded-lg px-4 py-3 mt-6"
+                className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6"
                 disabled={loginLoading}
               >
                 {loginLoading ? (
