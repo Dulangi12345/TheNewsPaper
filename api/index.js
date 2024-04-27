@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(publicDirectoryPath, 'index.html'));
 });
 
-
+console.log(path.join(publicDirectoryPath, 'index.html'));
 
 router.post('/api', async (req, res) => {
   try {
