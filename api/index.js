@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import got from 'got';
 import bodyParser from 'body-parser';
-import ServerlessHttp from 'serverless-http';
 
 const app = express();
 app.use(bodyParser.json());
@@ -63,4 +62,4 @@ app.listen(PORT, () => {
 });
 
 
-export const handler = ServerlessHttp(app);
+export default app;
