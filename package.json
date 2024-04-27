@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "start" : "node server.js"
+    "start" : "node index.js"
   },
   "dependencies": {
     "-": "^0.0.1",

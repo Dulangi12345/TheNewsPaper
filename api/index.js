@@ -14,7 +14,7 @@ const router = express.Router();
 const PORT = process.env.PORT || 6001;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const publicDirectoryPath = path.join(__dirname, '/dist');
+const publicDirectoryPath = path.join(__dirname, '../dist');
 
 app.use(express.static(publicDirectoryPath));
 app.use(router);
