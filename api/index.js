@@ -21,6 +21,10 @@ app.use(router);
 console.log(__dirname)
 console.log(publicDirectoryPath)
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
+});
+
 
 
 router.post('/api', async (req, res) => {
