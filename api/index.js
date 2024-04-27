@@ -51,11 +51,7 @@ router.post('/api', async (req, res) => {
 });
 
 
-app.get('/', (req , res) => {
-  res.json({
-    message: 'Hello from express on aws lambda'
-  })
-})
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
