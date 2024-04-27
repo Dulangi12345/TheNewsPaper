@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import got from 'got';
 import bodyParser from 'body-parser';
+import ServerlessHttp from 'serverless-http';
 
 const app = express();
 app.use(bodyParser.json());
@@ -51,11 +52,15 @@ router.post('/api', async (req, res) => {
 });
 
 
+app.get('/', (req , res) => {
+  res.json({
+    message: 'Hello from express on aws lambda'
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
 
-
-
+export const handler = ServerlessHttp(app);
