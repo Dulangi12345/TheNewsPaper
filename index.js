@@ -21,18 +21,11 @@ const publicDirectoryPath2 = path.join(__dirname, '/src');
 
 app.use(express.static(publicDirectoryPath));
 app.use(express.static(publicDirectoryPath2));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname)));
 
 app.use(router);
 
-console.log(__dirname)
-console.log(publicDirectoryPath)
-console.log(path.join(__dirname, 'index.html'));
-
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-
+  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
 });
 
 router.post('/api', async (req, res) => {
