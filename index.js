@@ -24,7 +24,10 @@ console.log(__dirname)
 console.log(publicDirectoryPath)
 
 
+app.get('/', (req, res) => {
+  res.send("ejgnwejgh")
 
+});
 
 router.post('/api', async (req, res) => {
   try {
