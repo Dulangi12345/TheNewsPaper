@@ -24,6 +24,8 @@ console.log(__dirname)
 console.log(publicDirectoryPath)
 
 
+
+
 router.post('/api', async (req, res) => {
   try {
     const response = await got.post(`${API_SERVICE_URL}/api/sch/payments`, {
