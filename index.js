@@ -16,8 +16,11 @@ const PORT = process.env.PORT || 6001;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDirectoryPath = path.join(__dirname, '/dist');
+const publicDirectoryPath2 = path.join(__dirname, '/src');
+
 
 app.use(express.static(publicDirectoryPath));
+app.use(express.static(publicDirectoryPath2));
 app.use(router);
 
 console.log(__dirname)
@@ -25,7 +28,7 @@ console.log(publicDirectoryPath)
 
 
 app.get('/', (req, res) => {
-  res.send("ejgnwejgh")
+  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
 
 });
 
