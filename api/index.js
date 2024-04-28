@@ -21,26 +21,39 @@ app.use(router);
 console.log(__dirname)
 console.log(publicDirectoryPath)
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(publicDirectoryPath, 'index.html'));
-});
 
-console.log(path.join(publicDirectoryPath, 'index.html'));
+
+
 
 router.post('/api', async (req, res) => {
   try {
-    const response = await got.post(`${API_SERVICE_URL}/api/sch/payments`, {
+    // const response = await got.post(`${API_SERVICE_URL}/api/sch/payments`, {
+    //   json: req.body,
+    //   responseType: 'json',
+    // });
+    
+    // console.log(response.body);
+    // console.log('External Server Status Code:', response.statusCode);
+    // if(response.statusCode === 201){
+    // const jsonRes =JSON.stringify(response.body);
+    // res.send(jsonRes);
+    // }else{
+    //   res.status(response.statusCode).json({ error: "Unexpected status code", statusCode: response.statusCode });
+    // }
+
+
+    const response =  got.stream.post(`${API_SERVICE_URL}/api/sch/payments`, {
       json: req.body,
       responseType: 'json',
     });
-    
-    console.log(response.body);
-    console.log('External Server Status Code:', response.statusCode);
-    if(response.statusCode === 201){
-    const jsonRes =JSON.stringify(response.body);
-    res.send(jsonRes);
-    }else{
-      res.status(response.statusCode).json({ error: "Unexpected status code", statusCode: response.statusCode });
+
+    response.pipe(res);
+    if (res.statusCode !== 200) {
+      res.status(response.statusCode).json({ error: "External Server Error", statusCode: response.statusCode });
+      res.send();
+    }
+    else{
+      res.status(200).json({ message: "Success" });
     }
     
   } catch (error) {
