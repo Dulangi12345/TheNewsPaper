@@ -3,9 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import got from 'got';
 import bodyParser from 'body-parser';
-import { Stream } from 'stream';
-import axios from 'axios';
-import { type } from 'os';
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -17,16 +15,13 @@ const router = express.Router();
 const PORT = process.env.PORT || 6001;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const publicDirectoryPath = path.join(__dirname, '../dist');
+const publicDirectoryPath = path.join(__dirname, '/dist');
 
 app.use(express.static(publicDirectoryPath));
 app.use(router);
 
 console.log(__dirname)
 console.log(publicDirectoryPath)
-
-
-
 
 
 router.post('/api', async (req, res) => {
