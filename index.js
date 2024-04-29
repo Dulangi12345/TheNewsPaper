@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 app.use(cors(
   {
-    origin: '*',
+    origin: 'https://vercel.com/thecatalyst/the-news-paper-github-io',
     methods: ['GET', 'POST'],
     credentials: true,
   }
