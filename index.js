@@ -28,13 +28,6 @@ app.get('/', (req, res) => {
   res.send("Hello World");
 });
 
-app.use(cors(
-  {
-    origin: 'https://the-news-paper-github-io.vercel.app',
-    methods: ['GET', 'POST'],
-    credentials: true,
-  }
-));
 
 router.post('/api', async (req, res) => {
   try {

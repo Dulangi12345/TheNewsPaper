@@ -50,7 +50,7 @@ const Register = () => {
       };
 
       try {
-        await axios.post("https://the-news-paper-github-io.vercel.app/api", data).then((response) => {
+        await axios.post("https://vercel.com/thecatalyst/severside/api", data).then((response) => {
           
           console.log(response);
           handleRegister(e);
