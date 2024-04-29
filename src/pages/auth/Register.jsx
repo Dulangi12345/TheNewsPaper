@@ -30,9 +30,6 @@ const Register = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-  axios.defaults.withCredentials = true;
-
-
   const handlePayment = async (e) => {
     e.preventDefault();
     setLoginLoading(true);
@@ -50,7 +47,7 @@ const Register = () => {
       };
 
       try {
-        await axios.post("https://vercel.com/thecatalyst/severside/api", data).then((response) => {
+        await axios.post("https://severside.vercel.app/api", data).then((response) => {
           
           console.log(response);
           handleRegister(e);
