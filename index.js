@@ -29,7 +29,7 @@ app.use(router);
 console.log((path.join(__dirname, 'index.html')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.send("Hello World");
 });
 
 router.post('/api', async (req, res) => {
