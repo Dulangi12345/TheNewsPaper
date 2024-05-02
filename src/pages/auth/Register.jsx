@@ -14,6 +14,8 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 import axios from "axios";
+import photo  from "../../assets/Login3.png";
+
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -117,12 +119,9 @@ const Register = () => {
   return (
     <div>
       <section className="flex flex-col md:flex-row h-screen items-center">
-        <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-          <img
-            src="https://source.unsplash.com/random"
-            alt=""
-            className="w-full h-full object-cover"
-          />
+        <div className="bg-white hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+                  <img src={photo} alt="" className="w-full h-full object-cover p-16" />
+
         </div>
 
         <div
@@ -140,7 +139,7 @@ const Register = () => {
               id="form-container"
               style={{
                 height: "500px",
-                overflow: "scroll",
+                overflowY: "scroll"
               }}
             >
               {error && <p className="text-red-500">{error}</p>}
