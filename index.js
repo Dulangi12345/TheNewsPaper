@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import got from 'got';
 import bodyParser from 'body-parser';
+import { redirect } from 'react-router-dom';
 
 
 const app = express();
@@ -12,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const API_SERVICE_URL = 'https://secure.myfees.lk';
 const router = express.Router();
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 3001;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDirectoryPath = path.join(__dirname, '/dist');
@@ -33,7 +34,6 @@ router.post('/api', async (req, res) => {
   try {
     const response = await got.post(`${API_SERVICE_URL}/api/sch/payments`, {
       json: req.body,
-      responseType: 'json',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -41,14 +41,16 @@ router.post('/api', async (req, res) => {
     });
     
     console.log(response.body);
-    console.log('External Server Status Code:', response.statusCode);
-    if(response.statusCode === 201){
-    const jsonRes =JSON.stringify(response.body);
-    res.send(jsonRes);
-    }else{
-      res.status(response.statusCode).json({ error: "Unexpected status code", statusCode: response.statusCode });
-    }
+    const data = JSON.parse(response.body); 
+    if( 'id' in data){
+      // res.send(response.body);
+      console.log(data.id);
+      res.redirect(`${API_SERVICE_URL}/pay/${data.id}`);
 
+    } else {
+      console.log("The field 'example_field' is not present in the response.");
+    }
+  
     
   } catch (error) {
     console.error(error);

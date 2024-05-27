@@ -69,6 +69,16 @@ const FreeArticle = () => {
                 })}
               </div>
 
+
+              {/* <div
+                        dangerouslySetInnerHTML={{ __html: article.content }}
+
+                className="flex flex-col mt-14 gap-6 text-xl text-gray-700  "
+                id="article-content"
+              >
+               
+              </div> */}
+
               <div
                 className="flex lg:flex-row flex-col w-full justify-evenly mt-20"
                 id="free-articles-sub-images-section"

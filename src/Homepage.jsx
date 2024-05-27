@@ -12,8 +12,10 @@ const Homepage = () => {
   const { scrollYprogress } = useScroll();
   const navigate = useNavigate();
 
- 
-
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    window.location.href = "https://test-php-beta.vercel.app/api/payment.php";
+  };
 
   return (
     <motion.div
@@ -56,13 +58,14 @@ const Homepage = () => {
             </p>
             <button 
             //go to register page on click
-            onClick={
+             onClick={
               () => {
-                navigate('/register');
-              }
+                navigate("/register");
+             }
             }
-            
-            className="bg-none rounded-full border-2  border-black text-lg m-auto mt-10 p-4 w-2/3  ">
+            // onClick={handlePayment}
+
+            className=" rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-2/3 hover:border-black hover:bg-black hover:text-white ">
               Subscribe
             </button>
            
@@ -89,7 +92,7 @@ const Homepage = () => {
                 className="flex lg:flex-row bg-[#54d2b5]"
                 id="Catalyst-section"
               >
-                <div className="left-0 right-0 m-auto p-4 lg:h-[500px]  ">
+                <div className="left-0 right-0 m-auto p-4 lg:h-[450px]  ">
                   <h1 className=" font-bold  text-5xl  text-white  pt-16 ml-4 ">
                     We Are..
                   </h1>
@@ -113,12 +116,16 @@ const Homepage = () => {
                     be the spark that ignites change!
                   </p>
 
-                  <button className="bg-none  rounded-full border-2  border-black text-lg p-2 mt-4 ">
-                    <DropdownMenu />
-                  </button>
                 </div>
               </div>
             </motion.div>
+            <div className="flex lg:flex-row bg-[#54d2b5]">
+            <button className="bg-none  rounded-full border-2  border-black text-lg p-2 m-5">
+                    <DropdownMenu />
+                  </button>
+            </div>
+            
+   
           </div>
           {/* <div className='h-96' id='section-xyz'> 
 

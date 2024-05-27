@@ -13,51 +13,28 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore/lite";
-import axios from "axios";
+import photo  from "../../assets/Login3.png";
+
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [amount, setAmount] = useState("");
-  const [classOrCourse, setClassOrCourse] = useState("");
-  const [description, setDescription] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
-  const [invoice, setInvoiceNumber] = useState("");
-  const [indexNo, setIndexNo] = useState("");
-  const [apiKey, setApiKey] = useState("KCBAE725KPTCGANOKA902101207");
+  const [showPassword, setShowPassword] = useState(false);
+
   const [error, setError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const registeredAt = new Date();
+  const day30DaysFromNow = new Date(
+    new Date().setDate(new Date().getDate() + 30)
+  );
+  const timeDifference = day30DaysFromNow - registeredAt;
 
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    setLoginLoading(true);
-    try {
-      const data = {
-        email: email,
-        studentName: name,
-        amount: amount,
-        classOrCourse: classOrCourse,
-        description: description,
-        phoneNo: phoneNo,
-        invoice: invoice,
-        apiKey: apiKey,
-        indexNumber: indexNo,
-      };
+  const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
-      try {
-        await axios.post("https://severside.vercel.app/api", data).then((response) => {
-          
-          console.log(response);
-          handleRegister(e);
-        });
-      } catch (error) {
-        console.error(error.message);
-      }
-    } catch (error) {
-      console.error(error.message);
-    }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleRegister = async (e) => {
@@ -81,6 +58,10 @@ const Register = () => {
           name: name,
           email: email,
           role: "user",
+          p: password,
+          registeredAt: registeredAt,
+          day30DaysFromNow: day30DaysFromNow,
+          FreeTrialEnds: daysDifference,
         });
 
         // Send email verification
@@ -117,12 +98,8 @@ const Register = () => {
   return (
     <div>
       <section className="flex flex-col md:flex-row h-screen items-center">
-        <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
-          <img
-            src="https://source.unsplash.com/random"
-            alt=""
-            className="w-full h-full object-cover"
-          />
+        <div className="bg-white hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+          <img src={photo} alt="" className="w-full h-full object-cover p-16" />
         </div>
 
         <div
@@ -134,200 +111,64 @@ const Register = () => {
               Create an account
             </h1>
 
-            <form
-              className="mt-6 "
-              onSubmit={handlePayment}
-              id="form-container"
-              style={{
-                height: "500px",
-                overflow: "scroll",
-              }}
-            >
+            <form className="mt-6" onSubmit={handleRegister}>
               {error && <p className="text-red-500">{error}</p>}
               {successMessage && (
                 <p className="text-green-500">{successMessage}</p>
               )}
               <div>
-                <label className="block text-gray-700" for="studentName">
-                  Name
-                </label>
+                <label className="block text-gray-700">Name</label>
                 <input
-                  type="text"
-                  name="studentName"
-                  id="studentName"
+                  type="name"
+                  name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter Full Name"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                  className="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                   autoFocus
                   required
                 />
               </div>
               <div className="mt-4">
-                <label className="block text-gray-700" for="email">
-                  Email Address
-                </label>
+                <label className="block text-gray-700">Email Address</label>
                 <input
                   type="email"
                   name="email"
-                  id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter Email Address"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                  className="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                   autoFocus
                   required
                 />
               </div>
 
               <div className="mt-4">
-                <label className="block text-gray-700" for="password">
-                  Password
-                </label>
+                <label className="block text-gray-700">Password</label>
                 <input
-                  type="password"
+                  type={ showPassword  ? 'text' : 'password'}
                   name="password"
-                  id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter Password"
                   minLength="6"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                  className="w-full px-4 py-3 rounded-lg  mt-2 border focus:border-blue-500
               focus:bg-white focus:outline-none"
                   required
                 />
               </div>
 
-              {/* payment details */}
-
-              <div className="mt-4">
-                <label className="block text-gray-700" for="description">
-                  University or Institute
-                </label>
-                <input
-                  type="text"
-                  name="description"
-                  id="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Enter name of university or institute "
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-gray-700" for="amount">
-                  Payment amount
-                </label>
-                <input
-                  type="text"
-                  name="amount"
-                  id="amount"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="Enter payment amount  "
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-gray-700" for="phoneNo">
-                  Mobile Number
-                </label>
-                <input
-                  type="text"
-                  name="phoneNo"
-                  id="phoneNo"
-                  value={phoneNo}
-                  onChange={(e) => setPhoneNo(e.target.value)}
-                  placeholder="Enter mobile number"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-gray-700" for="indexNo">
-                  {" "}
-                  Enter Index number
-                </label>
-                <input
-                  type="text"
-                  name="indexNo"
-                  id="indexNo"
-                  value={indexNo}
-                  onChange={(e) => setIndexNo(e.target.value)}
-                  placeholder="Enter Index Number"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-gray-700" for="classOrCourse">
-                  class or Course
-                </label>
-                <input
-                  type="text"
-                  name="classOrCourse"
-                  id="classOrCourse"
-                  value={classOrCourse}
-                  onChange={(e) => setClassOrCourse(e.target.value)}
-                  placeholder="Enter class Or Course"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-gray-700" for="invoice">
-                  Invoice Number
-                </label>
-                <input
-                  type="text"
-                  name="invoice"
-                  id="invoice"
-                  value={invoice}
-                  onChange={(e) => setInvoiceNumber(e.target.value)}
-                  placeholder="Enter invoice number"
-                  minLength="6"
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mt-4">
-                <input
-                  type="hidden"
-                  name="apiKey"
-                  id="apiKey"
-                  value={apiKey}
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
-              focus:bg-white focus:outline-none"
-                  required
-                />
-              </div>
-
-              {/* <div className="text-right mt-2">
-                <a
-                  href="#"
-                  className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
-                >
-                  Forgot Password?
-                </a>
-              </div> */}
+              <button
+                type="button"
+                className="text-gray-600 cursor-pointer underline "
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
 
               <button
                 type="submit"
-                className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6"
+                className="w-full block bg-black hover:bg-[#20615B] text-white font-semibold rounded-lg px-4 py-3 mt-6 text-lg"
                 disabled={loginLoading}
               >
                 {loginLoading ? (
@@ -347,7 +188,7 @@ const Register = () => {
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="text-blue-500 hover:text-blue-700 font-semibold"
+                className="text-black hover:underline font-semibold"
               >
                 Login
               </Link>

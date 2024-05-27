@@ -7,7 +7,6 @@ import { AuthContext } from "../pages/auth/AuthProvider";
 const NavigationLayout = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,12 +74,31 @@ const NavigationLayout = () => {
                     <div className="text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium">
                       <Link to="/catalyst/homepage">Catalyst</Link>
                     </div>
+
+
+
+
+
                     {/* <div className='text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium' >
                                             <Link to="/kagura/homepage">Kagura</Link>
                                         </div>
                                         <div className='text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium' >
                                             <Link to="/CTTLive/homepage">CTT Live</Link>
                                         </div> */}
+
+                    {isLoggedIn && (
+                      <div className="cursor-pointer hover:underline text-black rounded-md px-3 py-2 text-sm font-medium">
+                        <Link to="/catalyst/profile">Profile</Link>
+                      </div>
+                    )}
+
+
+<div className="text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium">
+                      <Link to="/catalyst/about">About</Link>
+                    </div>
+
+
+
                     {isLoggedIn ? (
                       <div
                         className="cursor-pointer hover:underline text-black  rounded-md px-3 py-2 text-sm font-medium"
@@ -95,6 +113,8 @@ const NavigationLayout = () => {
                       <div className="cursor-pointer text-black hover:underline rounded-md px-3 py-2 text-sm font-medium">
                         <Link to="/login">Login</Link>
                       </div>
+
+
                     )}
                   </div>
                 </div>
@@ -266,8 +286,8 @@ const NavigationLayout = () => {
                     <Link to="/catalyst/homepage">Catalyst Homepage</Link>
                   </div>
                   <div>
-                        <DropdownMenu />
-                      </div>
+                    <DropdownMenu />
+                  </div>
 
                   <div className="text-black hover:underline rounded-md px-3 py-2 text-sm font-medium">
                     <Link to="/catalyst/current-events">Current Events</Link>
@@ -718,20 +738,13 @@ export default NavigationLayout;
 //     //Home Path name
 //     const isHomepage = location.pathname === '/';
 
-
 //     const toggleMobileMenu = () => {
 //         setMobileMenuOpen(!isMobileMenuOpen);
 //     };
 
-
-
-
 //     return (
 //         <div>
 //             <nav className=" ">
-
-
-
 
 //                 {isHomepage && (
 //                     <div className="relative flex h-16 items-center justify-between text-center bg-white lg:rounded-full rounded-3xl m-4 shadow-md border-2 border-gray-100 mx-auto max-w-7xl">
@@ -883,8 +896,6 @@ export default NavigationLayout;
 
 //                         <div className={`sm:hidden md:hidden lg:hidden ${isMobileMenuOpen ? "block" : "hidden"}`} id="mobile-menu">
 
-
-
 //                             {location.pathname.includes('/catalyst') && !location.pathname.includes('admin') && (
 
 //                                 <div className="space-y-1 px-2 pb-3 pt-2" id="nav-links">
@@ -947,16 +958,9 @@ export default NavigationLayout;
 
 //                                 </div>
 
-
-
-
-
-
-
 //                             )
 //                             }
 //                         </div>
-
 
 //                         {
 //                             location.pathname.includes('/kagura') && !location.pathname.includes('admin') && (
@@ -1001,12 +1005,9 @@ export default NavigationLayout;
 //                                             </div>
 //                                         </div>
 
-
 //                                     </div>
 
 //                                     <div className={`sm:hidden md:hidden lg:hidden ${isMobileMenuOpen ? "block" : "hidden"}`} id="mobile-menu">
-
-
 
 // //                         </div>
 
@@ -1043,7 +1044,6 @@ export default NavigationLayout;
 // //                                     </div>
 // //                                     <div className=" hover:underline block rounded-md px-3 py-2 text-base font-bold">
 
-
 // //                                         <Link to="/catalyst/wellbeing-corner">Wellbeing Corner</Link>
 
 //                                     /*{
@@ -1062,7 +1062,6 @@ export default NavigationLayout;
 //                                                         <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 //                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 //                                                         </svg>
-
 
 // //                                     </div>
 // //                                     <div className=" hover:underline block rounded-md px-3 py-2 text-base font-bold">

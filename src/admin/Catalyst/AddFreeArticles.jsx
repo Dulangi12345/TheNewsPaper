@@ -51,6 +51,11 @@ const AddFreeArticles = () => {
     );
   };
 
+
+  const deleteFreeArticle = async (e) =>{
+
+  }
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsSaving(true);
@@ -426,13 +431,13 @@ const AddFreeArticles = () => {
     setFreeArticleAuthor(e.target.value);
   };
 
-  const handleFreeArticleContentChange = (e) => {
-    setFreeArticleContent(e.target.value);
-  };
+  // const handleFreeArticleContentChange = (e) => {
+  //   setFreeArticleContent(e.target.value);
+  // };
 
-  // const handleFreeArticleContentChange = (value) => {
-  //     setFreeArticleContent(value);
-  // }
+  const handleFreeArticleContentChange = (value) => {
+      setFreeArticleContent(value);
+  }
 
   const handleFreeArticleImage1Change = (e) => {
     if (e.target.files[0]) {
@@ -568,7 +573,7 @@ const AddFreeArticles = () => {
                 <p class="mt-3 text-sm leading-6 text-gray-600">
                   Please add spaces between pragraphs for proper distinguishment
                 </p>
-                <div className="mt-2">
+                {/* <div className="mt-2">
                   <textarea
                     name=""
                     id=""
@@ -578,14 +583,14 @@ const AddFreeArticles = () => {
                     onChange={handleFreeArticleContentChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                   ></textarea>
-                </div>
+                </div> */}
 
-                {/* <ReactQuill
+                <ReactQuill
                     
                         value={FreeArticleContent}
                         onChange={handleFreeArticleContentChange}
                         className='border-2 border-black'
-                    /> */}
+                    />
               </div>
 
               <hr />
@@ -851,6 +856,11 @@ const AddFreeArticles = () => {
           >
             View Preview
           </button> */}
+          <button type="button" 
+          onClick={deleteFreeArticle}
+          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Delete 
+          </button>
           <button
             type="submit"
             disabled={isSaving}

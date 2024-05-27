@@ -25,11 +25,13 @@ import AnimeCornerPreview from './admin/Catalyst/AnimeCornerPreview';
 import Quiz from './admin/Catalyst/Quiz';
 import ApiitEvents from './pages/Catalyst/ApiitEvents';
 import ManageApiitEvents from './admin/Catalyst/ManageApiitEvents';
-
+import ManageUsers from './admin/Catalyst/manageUsers';
 import ProtectedRoute from './pages/auth/ProtectedRoute';
 import UnauthorizedPage from './pages/auth/UnauthorizedPage';
 import AdminDashboard from './admin/AdminDashboard';
 import ManageArticles from './admin/Catalyst/ManageArticles';
+import Profile from './pages/auth/profile';
+import About from './pages/auth/About';
 
 const AppRoutes = () => {
     return (
@@ -47,6 +49,10 @@ const AppRoutes = () => {
 
             <Route path="/catalyst/homepage" element={<CatalystHomepage />} />
             <Route path="/catalyst/free-articles/:articleId" element={<FreeArticle />} />
+
+            <Route path='/catalyst/profile' element={<Profile/>}/>
+            <Route path='/catalyst/about' element={<About/>}/>
+
 
 
             {/* Catalyst Pages - Protected Routes (only accessible by logged in User) */}
@@ -127,6 +133,12 @@ const AppRoutes = () => {
                 path="/admin/Catalyst/FreeArticlePreview"
                 element={<ProtectedRoute requiredRole="admin" fallbackPath="/unauthorized" element={<FreeArticlePreview />} />}
             />
+
+            <Route 
+                path="/admin/catalyst/manageUsers" 
+                element={<ProtectedRoute requiredRole="admin" fallbackPath="/unauthorized" element={<ManageUsers />} />}
+            />
+            
             <Route 
                 path="/admin/catalyst/addAnimeCorner" 
                 element={<ProtectedRoute requiredRole="admin" fallbackPath="/unauthorized" element={<AddAnimeCorner />} />}
