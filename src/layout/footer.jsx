@@ -88,9 +88,19 @@ const Footer = () => {
                         </svg>
                     </a> */}
         </div>
-        <p className="mt-8 text-base leading-6 text-center text-gray-400">
+        {/* <p className="mt-8 text-base leading-6 text-center text-gray-400">
           Follow us on our socials
         </p>
+
+        <div class="grid grid-cols-2 gap-1  items-center justify-center ">
+      
+        <div className="bg-white p-6 flex justify-center items-center">
+            <p>Powered by</p>
+        </div>
+        <div className="bg-white p-6 flex justify-center items-center">
+            <img src="image.jpg" alt="Image" class="w-full h-auto mb-4"/>
+        </div>
+    </div> */}
       </div>
     </section>
   );
