@@ -58,10 +58,9 @@ const Register = () => {
           name: name,
           email: email,
           role: "user",
-          p: password,
           registeredAt: registeredAt,
           day30DaysFromNow: day30DaysFromNow,
-          FreeTrialEnds: daysDifference,
+   
         });
 
         // Send email verification
@@ -73,19 +72,19 @@ const Register = () => {
       setLoginLoading(false);
     } catch (error) {
       switch (error.code) {
-        case "auth/email-already-in-use":
+        case "email-already-in-use":
           setError("Email already in use");
           break;
-        case "auth/missing-email":
+        case "missing-email":
           setError("Please enter an email address");
           break;
-        case "auth/invalid-email":
+        case "invalid-email":
           setError("Invalid email address");
           break;
-        case "auth/missing-password":
+        case "missing-password":
           setError("Please enter a password");
           break;
-        case "auth/weak-password":
+        case "weak-password":
           setError("Password must be at least 6 characters");
           break;
         default:

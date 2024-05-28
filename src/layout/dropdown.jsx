@@ -60,7 +60,7 @@ const DropdownMenu = () => {
         <div className="relative ">
             <button
                 id="dropdownDefaultButton"
-                className=" focus:outline-none  rounded-lg    text-center inline-flex items-center hover:underline block rounded-md px-3 py-1  font-bold"
+                className=" focus:outline-none  rounded-lg  text-center inline-flex items-center hover:underline block rounded-md px-3 py-1  font-bold"
                 type="button"
                 onClick={toggleDropdown} // Toggle dropdown visibility on button click
             >
@@ -84,7 +84,7 @@ const DropdownMenu = () => {
             </button>
 
             {isOpen && (
-                <div className="z-10 absolute top-full left-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <div className="absolute top-full left-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-auto dark:bg-gray-700">
                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                      {
                             articles.map((article, index) => (
