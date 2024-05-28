@@ -79,22 +79,22 @@ export const AuthProvider = ({ children }) => {
     }
 
     const checkUserRole = (requiredRole) => {
-        console.log('Required Role:', requiredRole);
-        console.log('User Role:', userRole);
+        // console.log('Required Role:', requiredRole);
+        // console.log('User Role:', userRole);
     
         if (requiredRole === 'admin' && userRole === 'admin') {
-            console.log("User is an admin.");
+            // console.log("User is an admin.");
             return "admin";
         }
         if (requiredRole === 'user' && userRole === 'user') {
-            console.log("User is a regular user.");
+            // console.log("User is a regular user.");
             return "user";
         }
         if (requiredRole === 'user' && userRole === 'admin') {
-            console.log("User is an admin accessing user pages.");
+            // console.log("User is an admin accessing user pages.");
             return "admin";
         }
-        console.log("User role check failed.");
+        // console.log("User role check failed.");
         return false;
     };
     

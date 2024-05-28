@@ -431,13 +431,13 @@ const AddFreeArticles = () => {
     setFreeArticleAuthor(e.target.value);
   };
 
-  // const handleFreeArticleContentChange = (e) => {
-  //   setFreeArticleContent(e.target.value);
-  // };
+  const handleFreeArticleContentChange = (e) => {
+    setFreeArticleContent(e.target.value);
+  };
 
-  const handleFreeArticleContentChange = (value) => {
-      setFreeArticleContent(value);
-  }
+  // const handleFreeArticleContentChange = (value) => {
+  //     setFreeArticleContent(value);
+  // }
 
   const handleFreeArticleImage1Change = (e) => {
     if (e.target.files[0]) {
@@ -517,15 +517,13 @@ const AddFreeArticles = () => {
                   Article Number
                 </label>
                 <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-2">
                     <input
                       type="number"
                       value={FreeArticleIndex}
                       onChange={handleFreeArticleIndexChange}
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900  focus:ring-0 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 p-2"
                       min={1}
                     />
-                  </div>
                 </div>
               </div>
 
@@ -541,8 +539,8 @@ const AddFreeArticles = () => {
                     type="text"
                     value={FreeArticleTitle}
                     onChange={handleFreeArticleTitleChange}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
-                  />
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 p-2"
+                    />
                 </div>
               </div>
 
@@ -558,8 +556,8 @@ const AddFreeArticles = () => {
                     type="text"
                     value={FreeArticleAuthor}
                     onChange={handleFreeArticleAuthorChange}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
-                  />
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 p-2"
+                    />
                 </div>
               </div>
 
@@ -573,7 +571,7 @@ const AddFreeArticles = () => {
                 <p class="mt-3 text-sm leading-6 text-gray-600">
                   Please add spaces between pragraphs for proper distinguishment
                 </p>
-                {/* <div className="mt-2">
+                <div className="mt-2">
                   <textarea
                     name=""
                     id=""
@@ -581,16 +579,16 @@ const AddFreeArticles = () => {
                     rows="10"
                     value={FreeArticleContent}
                     onChange={handleFreeArticleContentChange}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
-                  ></textarea>
-                </div> */}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 p-2"
+                    ></textarea>
+                </div>
 
-                <ReactQuill
+                {/* <ReactQuill
                     
                         value={FreeArticleContent}
                         onChange={handleFreeArticleContentChange}
                         className='border-2 border-black'
-                    />
+                    /> */}
               </div>
 
               <hr />

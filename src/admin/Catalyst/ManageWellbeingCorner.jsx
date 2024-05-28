@@ -143,6 +143,9 @@ const ManageWellbeingCorner = () => {
 
 
     return (
+        <Container>
+        <Row>
+          <Col>
         <div>
             {Loading == false ? (
                 <div className="flex flex-wrap">
@@ -165,7 +168,7 @@ const ManageWellbeingCorner = () => {
                                    by {articleData.articleAuthor}
                             </h3>
                             <img src={articleData.articleImage} alt="WellBeing Corner Image" className="w-full h-96 object-cover mt-4" />
-                            <p className="text-gray-700 text-base w-[1350px] mt-14" style={{ whiteSpace: 'pre-line' }}>{articleData.articleDescription}</p>
+                            <p className="text-gray-700 text-base  mt-14" style={{ whiteSpace: 'pre-line' }}>{articleData.articleDescription}</p>
 
                         </div>
                     </div>
@@ -309,6 +312,9 @@ const ManageWellbeingCorner = () => {
             )}
 
         </div>
+        </Col>
+        </Row>
+        </Container>
     );
 }
 

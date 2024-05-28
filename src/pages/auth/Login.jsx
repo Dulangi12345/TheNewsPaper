@@ -60,22 +60,22 @@ const Login = () => {
             setLoginLoading(false);
         } catch (error) {
             switch (error.code) {
-                case "auth/invalid-login-credentials":
+                case "invalid-login-credentials":
                     setError("Invalid email address or password");
                     break;
-                case "auth/missing-password":
+                case "missing-password":
                     setError("Please enter a password");
                     break;
-                case "auth/user-disabled":
+                case "user-disabled":
                     setError("Your account has been disabled");
                     break;
-                case "auth/invalid-email":
+                case "invalid-email":
                     setError("Invalid email address");
                     break;
-                case "auth/too-many-requests":
+                case "too-many-requests":
                     setError("Too many requests. Please try again later.");
                     break;
-                case "auth/weak-password":
+                case "weak-password":
                     setError("Password must be at least 6 characters");
                     break;
                 default:
