@@ -8,8 +8,9 @@ import {
   getDoc,
   updateDoc,
   getDocs,
+  deleteDoc
 } from "firebase/firestore/lite";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
@@ -18,7 +19,7 @@ import AdminSidebar from "../../layout/AdminSidebar";
 import { set } from "mongoose";
 
 const AddFreeArticles = () => {
-  const [FreeArticleIndex, setFreeArticleIndex] = useState(1);
+  const [FreeArticleIndex, setFreeArticleIndex] = useState("");
   const [FreeArticleTitle, setFreeArticleTitle] = useState("");
   const [FreeArticleContent, setFreeArticleContent] = useState("");
   const [FreeArticleAuthor, setFreeArticleAuthor] = useState("");
@@ -53,7 +54,52 @@ const AddFreeArticles = () => {
 
 
   const deleteFreeArticle = async (e) =>{
-
+      e.preventDefault();
+      try {
+        const collectionReference = collection(db, "CatalystFreeArticles");
+        const documentReference = doc(
+          collectionReference,
+          "Freearticle" + FreeArticleIndex
+        );
+        await deleteDoc(documentReference);
+        setFreeArticleTitle("");
+        setFreeArticleAuthor("");
+        setFreeArticleContent("");
+        setExistingImage1Url(null);
+        setExistingImage2Url(null);
+        setExistingImage3Url(null);
+        setFreeArticleIndex(1);
+      
+        const storageRef = ref(storage);
+        const catalystArticleImagesRef = ref(
+          storageRef,
+          "CatalystArticleImages"
+        );
+        const freeArticlesRef = ref(
+          catalystArticleImagesRef,
+          `FreeArticle ${FreeArticleIndex}`
+        );
+        const fileRef1 = ref(
+          freeArticlesRef,
+          `FreeArticle${FreeArticleIndexRef.current}Image1`
+        );
+        const fileRef2 = ref(
+          freeArticlesRef,
+          `FreeArticle${FreeArticleIndexRef.current}Image2`
+        );
+        const fileRef3 = ref(
+          freeArticlesRef,
+          `FreeArticle${FreeArticleIndexRef.current}Image3`
+        );
+        await deleteObject(fileRef1);
+        await deleteObject(fileRef2);
+        await deleteObject(fileRef3);
+        console.log("Document successfully deleted!");
+        
+      } catch (error) {
+        console.log("Error deleting document: ", error);
+        
+      }
   }
 
   const handleOnSubmit = async (e) => {
@@ -855,7 +901,9 @@ const AddFreeArticles = () => {
             View Preview
           </button> */}
           <button type="button" 
-          onClick={deleteFreeArticle}
+          onClick={
+            deleteFreeArticle
+          }
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Delete 
           </button>

@@ -39,13 +39,13 @@ const AnimeCorner = () => {
         transition={{ duration: 1, ease: easeInOut, repeat: Infinity }}
       >
         <h1 className="font-bold text-6xl m-20 text-center " id="anime-heading">
-          Top 5 animes of the month
+          Top animes of the month
         </h1>
       </motion.div>
 
       <div className="text-center" id="anime-heading">
         <p className="text-2xl m-16  ">
-          Welcome to our anime corber, where we bring you the pulse of the anime
+          Welcome to our anime corner, where we bring you the pulse of the anime
           world in real-time! Dive into the vibrant universe of Japanese
           animation with our carefully curated collection of the most trending
           and popular anime series of the moment. Whether you're a seasoned

@@ -4,7 +4,7 @@ import { db } from '../../firebase';
 import Footer from '../../layout/footer';
 
 const WellbeingCorner = () => {
-    const [articleData, setArticleData] = useState({ articleTitle: '', articleDescription: '', articleImage: '' });
+    const [articleData, setArticleData] = useState({ articleTitle: '', articleDescription: '', articleImage: '' , articleAuthor: ''});
     const [Loading, setLoading] = useState(true);
 
     const fetchArticleData = async () => {
@@ -42,7 +42,7 @@ const WellbeingCorner = () => {
                                     <h2 className="text-5xl font-bold text-center  mb-3" id="article-title">{articleData.articleTitle}</h2>
                                 </div>
                                 <h3 className=" text-xl italic text-center mb-10">
-                                    by Shelly Adams
+                                    {articleData.articleAuthor}
                                 </h3>
                                 <img src={articleData.articleImage} alt="Wellbeing Corner Image" className="w-full h-[800px] object-fill mt-4" />
                                 <p className="text-gray-700  mt-14 text-xl"

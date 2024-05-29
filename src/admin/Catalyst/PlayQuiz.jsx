@@ -214,7 +214,7 @@ const PlayQuiz = () => {
                                         <label
                                             htmlFor={`answer-${answerIndex}`}
                                             id="custom-checkbox-label"
-                                            className="select-none cursor-pointer rounded-full border-2 border-black m-2 bg-white
+                                            className="select-none cursor-pointer rounded-full border-2 border-black m-2 bg-gray-100 bg-opacity-50
                                         py-6 px-6 font-bold text-black transition-colors duration-200 ease-in-out peer-checked:bg-teal-600 peer-checked:text-white peer-checked:border-gray-200"
                                         >
                                             {answer}

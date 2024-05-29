@@ -225,7 +225,7 @@ const NavigationLayout = () => {
                       </div>
 
                       <div className="text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium">
-                        <Link to="/catalyst/apiit-events">Apiit Events</Link>
+                        <Link to="/catalyst/apiit-events">APIIT Events</Link>
                       </div>
 
                       <div className="text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium">
@@ -293,7 +293,7 @@ const NavigationLayout = () => {
                   </div>
 
                   <div className="text-black hover:underline rounded-md px-3 py-2 text-sm font-medium">
-                    <Link to="/catalyst/apiit-events">Apiit Events</Link>
+                    <Link to="/catalyst/apiit-events">APIIT Events</Link>
                   </div>
 
                   <div className="text-black hover:underline rounded-md px-3 py-2 text-sm font-medium">
