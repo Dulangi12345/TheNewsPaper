@@ -30,14 +30,14 @@ const Homepage = () => {
         Welcome to the world of APIIT news
       </p>
 
-      <div className="grid lg:grid-cols-2 md:gid-row-2 ">
+      <div className="grid lg:grid-cols-2 md:gid-row-2  ">
         {/* <h1 >Main Homepage</h1>
             <h2>IDK What to say</h2> */}
 
         <div className="">
           <ul
             id="list-motto"
-            className="lg:mt-20 mt-10 lg:text-left  text-center lg:text-6xl  text-5xl"
+            className="lg:mt-20 mt-4 lg:text-left  text-center lg:text-6xl  text-5xl"
           >
             <li className=" font-bold w-2/3 m-auto text-cyan-700  leading-snug fadeInLeft delay-1">
               Integrity
@@ -59,17 +59,22 @@ const Homepage = () => {
               around the world. Read our articles and get to know about the
               latest news and events.
             </p>
-            <button
-              //go to register page on click
-              onClick={() => {
-                navigate("/register");
-              }}
-              // onClick={handlePayment}
+            <div className="flex flex-wrap justify-center mt-10 space-x-2 relative z-20">
+              <button
+                //go to register page on click
+                onClick={() => {
+                  navigate("/register");
+                }}
+                // onClick={handlePayment}
 
-              className=" rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-2/3 hover:border-black hover:bg-black hover:text-white "
-            >
-              Subscribe
-            </button>
+                className=" rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white "
+              >
+                Subscribe
+              </button>
+              <button className="rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white ">
+                <DropdownMenu />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -97,7 +102,7 @@ const Homepage = () => {
                 className="flex lg:flex-row bg-[#54d2b5]  "
                 id="Catalyst-section"
               >
-                <div className="left-0 right-0 m-auto p-4 lg:h-[400px] ">
+                <div className="left-0 right-0 m-auto p-4 lg:h-[500px] ">
                   <h1 className=" font-bold  text-5xl  text-white  pt-16 ml-4 ">
                     We Are..
                   </h1>
@@ -123,12 +128,12 @@ const Homepage = () => {
                 </div>
               </div>
             </motion.div>
-            
-            <div className="flex lg:flex-row bg-[#54d2b5] relative z-20">
+
+            {/* <div className="flex lg:flex-row bg-[#54d2b5] relative z-20">
                 <button className="bg-none  rounded-full border-2  border-black text-lg p-2 m-5">
                   <DropdownMenu />
                 </button>
-              </div>
+              </div> */}
           </div>
 
           <div
