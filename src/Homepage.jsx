@@ -59,7 +59,7 @@ const Homepage = () => {
               around the world. Read our articles and get to know about the
               latest news and events.
             </p>
-            <div className="flex flex-wrap justify-center mt-10 space-x-2 relative z-20">
+            <div className="flex lg:flex-row sm:flex-col md:flex-col gap-2 flex-col justify-center mt-10 space-x-2 relative z-20">
               <button
                 //go to register page on click
                 onClick={() => {
@@ -71,7 +71,7 @@ const Homepage = () => {
               >
                 Subscribe
               </button>
-              <button className="rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white ">
+              <button className="rounded-full border-2  border-black  text-sm md:text-lg  lg:text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white ">
                 <DropdownMenu />
               </button>
             </div>

@@ -38,8 +38,8 @@ const AnimeCorner = () => {
         animate={{ y: 0 }}
         transition={{ duration: 1, ease: easeInOut, repeat: Infinity }}
       >
-        <h1 className="font-bold text-6xl m-20 text-center " id="anime-heading">
-          Top animes of the month
+        <h1 className="font-bold text-6xl m-20 text-center " id="welcome-paragraph">
+          Top anime recommendations
         </h1>
       </motion.div>
 
@@ -110,7 +110,7 @@ const AnimeCorner = () => {
                         __html: anime.animeContent,
                       }}
                       id="anime-content"
-                      className="text-xl  left-0 right-0 m-auto p-4  h-full leading-8  text-white "
+                      className="text-xl  left-0 right-0 m-auto p-4  h-full leading-8  "
                     ></p>
                   </div>
                 </motion.div>
