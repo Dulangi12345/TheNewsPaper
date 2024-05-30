@@ -402,7 +402,7 @@ const AddAnimeCorner = () => {
           >
             {isFormVisible ? " Cancel" : "Add An Anime"}
           </button>
-          <div>
+          {/* <div>
             {animeList.length > 0 && (
               <button
                 onClick={handlePreviewClick}
@@ -411,7 +411,7 @@ const AddAnimeCorner = () => {
                 Preview{" "}
               </button>
             )}
-          </div>
+          </div> */}
         </div>
 
         {isFormVisible && (
