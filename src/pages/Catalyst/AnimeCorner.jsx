@@ -98,9 +98,7 @@ const AnimeCorner = () => {
                   <div>
                     <h3
                       className="text-6xl font-bold lg:text-center mt-8 text-white"
-                      style={{
-                        color: anime.animeColor,
-                      }}
+                    
                       id="anime-name"
                     >
                       {anime.animeName}
@@ -109,8 +107,9 @@ const AnimeCorner = () => {
                       dangerouslySetInnerHTML={{
                         __html: anime.animeContent,
                       }}
+                      style={{ color: "white" }}
                       id="anime-content"
-                      className="text-xl  left-0 right-0 m-auto p-4  h-full leading-8  "
+                      className="text-xl  left-0 right-0 m-auto p-4  h-full leading-8 text-white "
                     ></p>
                   </div>
                 </motion.div>
