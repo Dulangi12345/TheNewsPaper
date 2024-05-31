@@ -37,7 +37,7 @@ const Homepage = () => {
         <div className="">
           <ul
             id="list-motto"
-            className="lg:mt-20 mt-4 lg:text-left  text-center lg:text-6xl  text-5xl"
+            className="lg:mt-10 mt-4 lg:text-left  text-center lg:text-6xl  text-5xl"
           >
             <li className=" font-bold w-2/3 m-auto text-cyan-700  leading-snug fadeInLeft delay-1">
               Integrity
@@ -59,7 +59,7 @@ const Homepage = () => {
               around the world. Read our articles and get to know about the
               latest news and events.
             </p>
-            <div className="flex lg:flex-row sm:flex-col md:flex-col gap-2 flex-col justify-center mt-10 space-x-2 relative z-20">
+            <div className="flex lg:flex-row sm:flex-col md:flex-col gap-2 flex-col justify-center  space-x-2 relative z-20">
               <button
                 //go to register page on click
                 onClick={() => {
@@ -67,13 +67,13 @@ const Homepage = () => {
                 }}
                 // onClick={handlePayment}
 
-                className=" rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white "
+                className=" rounded-full border-2  border-black  text-lg m-auto mt-10 p-3 w-2/3 hover:border-black hover:bg-black hover:text-white "
               >
                 Subscribe
               </button>
-              <button className="rounded-full border-2  border-black  text-sm md:text-lg  lg:text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white ">
+              {/* <button className="rounded-full border-2  border-black  text-sm md:text-lg  lg:text-lg m-auto mt-10 p-3 w-1/3 hover:border-black hover:bg-black hover:text-white ">
                 <DropdownMenu />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -129,11 +129,11 @@ const Homepage = () => {
               </div>
             </motion.div>
 
-            {/* <div className="flex lg:flex-row bg-[#54d2b5] relative z-20">
+            <div className="flex lg:flex-row bg-[#54d2b5] relative z-20">
                 <button className="bg-none  rounded-full border-2  border-black text-lg p-2 m-5">
                   <DropdownMenu />
                 </button>
-              </div> */}
+              </div>
           </div>
 
           <div
