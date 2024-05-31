@@ -39,7 +39,7 @@ const AnimeCorner = () => {
         transition={{ duration: 1, ease: easeInOut, repeat: Infinity }}
       >
         <h1 className="font-bold text-6xl m-20 text-center " id="welcome-paragraph">
-          Top anime recommendations
+          Top 5 animes of the month
         </h1>
       </motion.div>
 
