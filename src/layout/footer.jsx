@@ -1,3 +1,5 @@
+import photo from "./../assets/MyFeesLogo.png";
+
 const Footer = () => {
   return (
     <section className="bg-white border-t border-gray-300 shadow-lg mt-36">
@@ -35,7 +37,7 @@ const Footer = () => {
                     </div> */}
         </nav>
         <div className="flex justify-center mt-8 space-x-6">
-          <a href="#" className="text-gray-400 hover:text-gray-500">
+          {/* <a href="#" className="text-gray-400 hover:text-gray-500">
             <span className="sr-only">LinkedIn</span>
             <svg
               className="w-6 h-6"
@@ -49,7 +51,7 @@ const Footer = () => {
                 clip-rule="evenodd"
               ></path>
             </svg>
-          </a>
+          </a> */}
           <a
             href="https://www.instagram.com/thecatalyst.apiit?igsh=MTRvZ3FpMDZoaTFneA==
 "
@@ -69,6 +71,8 @@ const Footer = () => {
               ></path>
             </svg>
           </a>
+
+     
           {/* <a href="#" className="text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Twitter</span>
                         <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
@@ -88,19 +92,17 @@ const Footer = () => {
                         </svg>
                     </a> */}
         </div>
-        {/* <p className="mt-8 text-base leading-6 text-center text-gray-400">
-          Follow us on our socials
-        </p>
 
-        <div class="grid grid-cols-2 gap-1  items-center justify-center ">
-      
-        <div className="bg-white p-6 flex justify-center items-center">
-            <p>Powered by</p>
-        </div>
-        <div className="bg-white p-6 flex justify-center items-center">
-            <img src="image.jpg" alt="Image" class="w-full h-auto mb-4"/>
-        </div>
-    </div> */}
+        <div className="flex lg:flex:row md:flex:col flex-col w-1/3 right-0 left-0 m-auto p-4 ">
+            <div className="w-1/2 text-center right-0 left-0 m-auto w-full  font-bold text-lg">
+            <p className="font-['Cormorant'] ">
+                Powered by</p>
+            </div>
+            <div className="w-2/4  right-0 left-0 m-auto ">
+              <img src={photo} alt="" />
+            </div>
+          </div>
+    
       </div>
     </section>
   );

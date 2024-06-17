@@ -88,10 +88,9 @@ const NavigationLayout = () => {
                       </div>
                     )}
 
-                    {/* 
-<div className="text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium">
+                    <div className="text-black hover:underline  rounded-md px-3 py-2 text-sm font-medium">
                       <Link to="/catalyst/about">About</Link>
-                    </div> */}
+                    </div>
 
                     {isLoggedIn ? (
                       <div
@@ -138,6 +137,10 @@ const NavigationLayout = () => {
                     <Link to="/catalyst/profile">Profile</Link>
                   </div>
                 )}
+
+                <div className="text-black hover:underline rounded-md px-3 py-2 text-sm font-medium">
+                  <Link to="/catalyst/about">About</Link>
+                </div>
 
                 {isLoggedIn ? (
                   <div
